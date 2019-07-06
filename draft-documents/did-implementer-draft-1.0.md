@@ -220,12 +220,7 @@ Each DID uses a specific **DID method**, defined in a separate **DID method spec
 
 </details>
 
-<br />
-
-
 ---
-
-
 
 # 1. Introduction
 
