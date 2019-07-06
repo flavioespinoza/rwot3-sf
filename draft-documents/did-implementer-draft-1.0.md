@@ -83,7 +83,6 @@ Specifically, a DDO contains a set of **key descriptions**, which are machine-re
 
 Each DID uses a specific **DID method**, defined in a separate **DID method specification**, to define how the DID is registered, resolved, updated, and revoked on a specific distributed ledger or network.
 
-
 ---
 
 # Table of Contents
@@ -217,7 +216,6 @@ Each DID uses a specific **DID method**, defined in a separate **DID method spec
 </ul>
 
 
-
 </details>
 
 <br />
@@ -283,7 +281,9 @@ Conceptually, the relationship of this specification and a DID method specificat
 
 For a list of DID method specifications, see: [Section 2.1](#21-proposed-did-method-specifications)
 
----
+
+----
+
 
 # 2. DIDs and DDOs
 Current and proposed DID and DDO models and methods
