@@ -1,15 +1,18 @@
 <ul>
-	<li><a href="#did-decentralized-identifier-data-model-and-generic-syntax-10-implementors-draft-01">DID
-			(Decentralized Identifier) Data Model and Generic Syntax 1.0 implementor&apos;s Draft 01</a></li>
+	<li><a href="#did-decentralized-identifier-data-model-and-generic-syntax-10-implementors-draft-01">DID (Decentralized
+			Identifier) Data Model and Generic Syntax 1.0 implementor&apos;s Draft 01</a></li>
 	<li><a href="#abstract">Abstract</a></li>
 	<li><a href="#table-of-contents">Table of Contents</a></li>
 	<li><a href="#1-introduction">1. Introduction</a>
 		<ul>
 			<li><a href="#11-overview">1.1 Overview</a></li>
-			<li><a href="#12-uris-urls-and-urns">1.2. URIs, URLs, and URNs</a></li>
-			<li><a href="#13-motivations-for-dids">1.3. Motivations for DIDs</a></li>
-			<li><a href="#14-the-role-of-human-friendly-identifiers">1.4 The Role of Human-Friendly Identifiers</a></li>
-			<li><a href="#15-purpose-of-this-specification">1.5. Purpose of This Specification</a></li>
+			<li><a href="#12-uri-url-and-urn">1.2. URI, URL, and URN</a></li>
+			<li><a href="#13-uri">1.3. URI</a></li>
+			<li><a href="#14-url">1.4. URL</a></li>
+			<li><a href="#15-urn">1.5 URN</a></li>
+			<li><a href="#16-motivations-for-dids">1.6. Motivations for DIDs</a></li>
+			<li><a href="#17-the-role-of-human-friendly-identifiers">1.7 The Role of Human-Friendly Identifiers</a></li>
+			<li><a href="#18-purpose-of-this-specification">1.8. Purpose of This Specification</a></li>
 		</ul>
 	</li>
 	<li><a href="#2-dids-and-ddos">2. DIDs and DDOs</a>
@@ -36,10 +39,10 @@
 		<ul>
 			<li><a href="#61-context-required">6.1. Context (Required)</a></li>
 			<li><a href="#62-primary-did-required">6.2. Primary DID (Required)</a></li>
-			<li><a href="#63-guardian-required-if-no-proof-of-ownership">6.3. Guardian (Required If No Proof of
-					Ownership)</a></li>
-			<li><a href="#64-proof-of-ownership-required-if-no-guardian">6.4. Proof of Ownership (Required If No
-					Guardian)</a></li>
+			<li><a href="#63-guardian-required-if-no-proof-of-ownership">6.3. Guardian (Required If No Proof of Ownership)</a>
+			</li>
+			<li><a href="#64-proof-of-ownership-required-if-no-guardian">6.4. Proof of Ownership (Required If No Guardian)</a>
+			</li>
 			<li><a href="#65-proof-of-control-optional-and-method-specific">6.5. Proof of Control (Optional and
 					Method-Specific)</a>
 				<ul>
@@ -71,8 +74,8 @@
 				<ul>
 					<li><a href="#921-proving-ownership-of-a-did-and-ddo">9.2.1 Proving Ownership of a DID and DDO</a></li>
 					<li><a href="#922-proving-ownership-of-a-public-key">9.2.2 Proving Ownership of a Public Key</a></li>
-					<li><a href="#923-identity-owner-authentication-and-verifiable-claims">9.2.3 Identity Owner Authentication
-							and Verifiable Claims</a></li>
+					<li><a href="#923-identity-owner-authentication-and-verifiable-claims">9.2.3 Identity Owner Authentication and
+							Verifiable Claims</a></li>
 				</ul>
 			</li>
 			<li><a href="#93-authentication-service-endpoints">9.3 Authentication Service Endpoints</a></li>
@@ -84,8 +87,8 @@
 	</li>
 	<li><a href="#10-privacy-considerations">10. Privacy Considerations</a>
 		<ul>
-			<li><a href="#101-requirements-of-did-method-specifications">10.1 Requirements of DID Method
-					Specifications</a></li>
+			<li><a href="#101-requirements-of-did-method-specifications">10.1 Requirements of DID Method Specifications</a>
+			</li>
 			<li><a href="#102-keep-personally-identifiable-information-pii-off-ledger">10.2 Keep Personally-Identifiable
 					Information (PII) Off-Ledger</a></li>
 			<li><a href="#103-did-correlation-risks-and-pseudonymous-dids">10.3 DID Correlation Risks and Pseudonymous
@@ -102,13 +105,12 @@
 			<li><a href="#114-time-locks-and-ddo-recovery">11.4 Time Locks and DDO Recovery</a></li>
 			<li><a href="#115-smart-signatures">11.5 Smart Signatures</a></li>
 			<li><a href="#116-verifiable-claims">11.6 Verifiable Claims</a></li>
-			<li><a href="#117-alternate-serializations-and-graph-models">11.7 Alternate Serializations and Graph
-					Models</a></li>
+			<li><a href="#117-alternate-serializations-and-graph-models">11.7 Alternate Serializations and Graph Models</a>
+			</li>
 		</ul>
 	</li>
 	<li><a href="#12-references">12. References</a></li>
-	<li><a href="#appendix-a-the-generic-did-context-for-json-ld">Appendix A: The Generic DID Context for JSON-LD</a>
-	</li>
+	<li><a href="#appendix-a-the-generic-did-context-for-json-ld">Appendix A: The Generic DID Context for JSON-LD</a></li>
 	<li><a href="#appendix-b-standard-key-descriptions">Appendix B: Standard Key Descriptions</a>
 		<ul>
 			<li><a href="#rsa-keys">RSA Keys</a></li>

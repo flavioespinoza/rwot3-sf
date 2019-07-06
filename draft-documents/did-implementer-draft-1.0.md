@@ -83,6 +83,7 @@ Specifically, a DDO contains a set of **key descriptions**, which are machine-re
 
 Each DID uses a specific **DID method**, defined in a separate **DID method specification**, to define how the DID is registered, resolved, updated, and revoked on a specific distributed ledger or network.
 
+
 ---
 
 # Table of Contents
@@ -95,17 +96,20 @@ Each DID uses a specific **DID method**, defined in a separate **DID method spec
 
 
 <ul>
-	<li><a href="#did-decentralized-identifier-data-model-and-generic-syntax-10-implementors-draft-01">DID
-			(Decentralized Identifier) Data Model and Generic Syntax 1.0 implementor&apos;s Draft 01</a></li>
+	<li><a href="#did-decentralized-identifier-data-model-and-generic-syntax-10-implementors-draft-01">DID (Decentralized
+			Identifier) Data Model and Generic Syntax 1.0 implementor&apos;s Draft 01</a></li>
 	<li><a href="#abstract">Abstract</a></li>
 	<li><a href="#table-of-contents">Table of Contents</a></li>
 	<li><a href="#1-introduction">1. Introduction</a>
 		<ul>
 			<li><a href="#11-overview">1.1 Overview</a></li>
-			<li><a href="#12-uris-urls-and-urns">1.2. URIs, URLs, and URNs</a></li>
-			<li><a href="#13-motivations-for-dids">1.3. Motivations for DIDs</a></li>
-			<li><a href="#14-the-role-of-human-friendly-identifiers">1.4 The Role of Human-Friendly Identifiers</a></li>
-			<li><a href="#15-purpose-of-this-specification">1.5. Purpose of This Specification</a></li>
+			<li><a href="#12-uri-url-and-urn">1.2. URI, URL, and URN</a></li>
+			<li><a href="#13-uri">1.3. URI</a></li>
+			<li><a href="#14-url">1.4. URL</a></li>
+			<li><a href="#15-urn">1.5 URN</a></li>
+			<li><a href="#16-motivations-for-dids">1.6. Motivations for DIDs</a></li>
+			<li><a href="#17-the-role-of-human-friendly-identifiers">1.7 The Role of Human-Friendly Identifiers</a></li>
+			<li><a href="#18-purpose-of-this-specification">1.8. Purpose of This Specification</a></li>
 		</ul>
 	</li>
 	<li><a href="#2-dids-and-ddos">2. DIDs and DDOs</a>
@@ -132,10 +136,10 @@ Each DID uses a specific **DID method**, defined in a separate **DID method spec
 		<ul>
 			<li><a href="#61-context-required">6.1. Context (Required)</a></li>
 			<li><a href="#62-primary-did-required">6.2. Primary DID (Required)</a></li>
-			<li><a href="#63-guardian-required-if-no-proof-of-ownership">6.3. Guardian (Required If No Proof of
-					Ownership)</a></li>
-			<li><a href="#64-proof-of-ownership-required-if-no-guardian">6.4. Proof of Ownership (Required If No
-					Guardian)</a></li>
+			<li><a href="#63-guardian-required-if-no-proof-of-ownership">6.3. Guardian (Required If No Proof of Ownership)</a>
+			</li>
+			<li><a href="#64-proof-of-ownership-required-if-no-guardian">6.4. Proof of Ownership (Required If No Guardian)</a>
+			</li>
 			<li><a href="#65-proof-of-control-optional-and-method-specific">6.5. Proof of Control (Optional and
 					Method-Specific)</a>
 				<ul>
@@ -167,8 +171,8 @@ Each DID uses a specific **DID method**, defined in a separate **DID method spec
 				<ul>
 					<li><a href="#921-proving-ownership-of-a-did-and-ddo">9.2.1 Proving Ownership of a DID and DDO</a></li>
 					<li><a href="#922-proving-ownership-of-a-public-key">9.2.2 Proving Ownership of a Public Key</a></li>
-					<li><a href="#923-identity-owner-authentication-and-verifiable-claims">9.2.3 Identity Owner Authentication
-							and Verifiable Claims</a></li>
+					<li><a href="#923-identity-owner-authentication-and-verifiable-claims">9.2.3 Identity Owner Authentication and
+							Verifiable Claims</a></li>
 				</ul>
 			</li>
 			<li><a href="#93-authentication-service-endpoints">9.3 Authentication Service Endpoints</a></li>
@@ -180,8 +184,8 @@ Each DID uses a specific **DID method**, defined in a separate **DID method spec
 	</li>
 	<li><a href="#10-privacy-considerations">10. Privacy Considerations</a>
 		<ul>
-			<li><a href="#101-requirements-of-did-method-specifications">10.1 Requirements of DID Method
-					Specifications</a></li>
+			<li><a href="#101-requirements-of-did-method-specifications">10.1 Requirements of DID Method Specifications</a>
+			</li>
 			<li><a href="#102-keep-personally-identifiable-information-pii-off-ledger">10.2 Keep Personally-Identifiable
 					Information (PII) Off-Ledger</a></li>
 			<li><a href="#103-did-correlation-risks-and-pseudonymous-dids">10.3 DID Correlation Risks and Pseudonymous
@@ -198,13 +202,12 @@ Each DID uses a specific **DID method**, defined in a separate **DID method spec
 			<li><a href="#114-time-locks-and-ddo-recovery">11.4 Time Locks and DDO Recovery</a></li>
 			<li><a href="#115-smart-signatures">11.5 Smart Signatures</a></li>
 			<li><a href="#116-verifiable-claims">11.6 Verifiable Claims</a></li>
-			<li><a href="#117-alternate-serializations-and-graph-models">11.7 Alternate Serializations and Graph
-					Models</a></li>
+			<li><a href="#117-alternate-serializations-and-graph-models">11.7 Alternate Serializations and Graph Models</a>
+			</li>
 		</ul>
 	</li>
 	<li><a href="#12-references">12. References</a></li>
-	<li><a href="#appendix-a-the-generic-did-context-for-json-ld">Appendix A: The Generic DID Context for JSON-LD</a>
-	</li>
+	<li><a href="#appendix-a-the-generic-did-context-for-json-ld">Appendix A: The Generic DID Context for JSON-LD</a></li>
 	<li><a href="#appendix-b-standard-key-descriptions">Appendix B: Standard Key Descriptions</a>
 		<ul>
 			<li><a href="#rsa-keys">RSA Keys</a></li>
@@ -212,6 +215,7 @@ Each DID uses a specific **DID method**, defined in a separate **DID method spec
 		</ul>
 	</li>
 </ul>
+
 
 
 </details>
@@ -277,9 +281,9 @@ The first purpose of this specification is to define the generic DID scheme and 
 
 Conceptually, the relationship of this specification and a DID method specification is similar to the relationship of the IETF generic URI specification ([RFC 3986](https://www.ietf.org/rfc/rfc3986.txt)) and a specific [URI scheme](http://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml) (such as the http: and https: schemes specified in [RFC 7230](http://www.iana.org/go/rfc7230)). It is also similar to the relationship of the IETF generic URN specification ([RFC 2141](https://www.ietf.org/rfc/rfc2141.txt)) and a specific URN namespace definition (such as the UUID URN namespace defined in [RFC 4122](https://tools.ietf.org/html/rfc4122)). The difference is that a DID method specification, in addition to defining a specific DID scheme, must also specify the methods for reading, writing, and revoking DID records on the network for which it is written.
 
-For a list of DID method specifications, see: [Section 2.1](#)
+For a list of DID method specifications, see: [Section 2.1](#21-proposed-did-method-specifications)
 
---
+---
 
 # 2. DIDs and DDOs
 Current and proposed DID and DDO models and methods
@@ -411,6 +415,7 @@ Following is a second example of a DDO that describes the DID above. In this cas
 }
 ```
 
+---
 
 # 3. Terminology and Acronyms
 
@@ -486,6 +491,8 @@ All other terms used in this specification are defined in this glossary.
 
 **XDI (Extensible Data Interchange)** (also XRI Data Interchange)—a semantic graph format and semantic data interchange protocol defined by the [OASIS XDI Technical Committee](https://www.oasis-open.org/committees/xdi/).
 
+---
+
 # 4. Design Goals & Principles
 
 This section summarizes the design goals and principles of DID architecture.
@@ -548,6 +555,7 @@ This section summarizes the design goals and principles of DID architecture.
   </tr>
 </table>
 
+---
 
 # 5. DIDs (Decentralized Identifiers)
 
@@ -613,6 +621,8 @@ A DID MUST be persistent and immutable, i.e., bound to an identity owner once an
 To avoid these issues, it is RECOMMENDED that DID method specifications only produce DIDs and DID methods bound to strong, stable ledgers or networks capable of making the highest level of commitment to persistence of the DID and DID method over time.
 
 NOTE: Although not included in this version, future versions of this specification may support a DDO equivID property to establish verifiable equivalence relations between DID records representing the same identity owner on multiple ledgers or networks. Such equivalence relations can produce the practical equivalent of a single persistent abstract DID. See Future Work (section 11).
+
+---
 
 # 6. DDOs (DID Descriptor Objects)
 
@@ -903,8 +913,6 @@ Standard metadata for identity records includes a timestamp of the most recent c
 3. The value of this key MUST follow the formatting rules (3, 4, 5) from section 6.7.
 
 Example:
-
-
 ```json
 {
 
@@ -912,7 +920,6 @@ Example:
 
 }
 ```
-
 
 ## 6.9. Signature (Optional)
 
@@ -946,6 +953,7 @@ Example:
 }
 ```
 
+---
 
 # 7. DID Operations
 
@@ -979,6 +987,8 @@ The DID method specification MUST specify how a client can update a DID record o
 
 Although a core feature of distributed ledgers is immutability, the DID method specification MUST specify how a client can revoke a DID record on the target system, including all cryptographic operations necessary to establish proof of revocation.
 
+---
+
 # 8. DID Resolvers
 
 A DID resolver is a software component with an API designed to accept requests for DID lookups and execute the corresponding DID method to retrieve the authoritative DDO. To be conformant with this specification, a DID resolver:
@@ -990,6 +1000,8 @@ A DID resolver is a software component with an API designed to accept requests f
 3. SHOULD offer the service of verifying the integrity of the DDO if it is signed.
 
 4. MAY offer the service of returning requested properties of the DDO.
+
+---
 
 # 9. Security Considerations
 
@@ -1087,6 +1099,8 @@ DID method specifications SHOULD enable support for a quorum of trusted parties 
 
 Access control and key recovery in a DID method specification MAY also include a time lock feature to protect against key compromise by maintaining a second track of control for recovery.  Further specification of this type of control is a matter for future work (see section 11.4).
 
+---
+
 # 10. Privacy Considerations
 
 It is critically important to apply the principles of Privacy by Design to all aspects of decentralized identity architecture, because DIDs and DDOs are—by design—administered directly by their owners. There is no registrar, hosting company, or other intermediate service provider to recommend or apply additional privacy safeguards.
@@ -1120,6 +1134,8 @@ The anti-correlation protections of pseudonymous DIDs are easily defeated if the
 When an entity is indistinguishable from others in the herd, privacy is available.  When the act of engaging privately with another party is by itself a recognizable flag, privacy is greatly diminished.  
 
 DIDs and DID methods SHOULD work to improve herd privacy, particularly for those who legitimately need it most. Choose technologies and human interfaces that default to preserving anonymity and pseudonymity. In order to reduce [digital fingerprints](https://en.wikipedia.org/wiki/Device_fingerprint), share common settings across client implementations, keep negotiated options to a minimum on wire protocols, use encrypted transport layers, and pad messages to standard lengths.
+
+---
 
 # 11. Future Work
 
@@ -1155,6 +1171,8 @@ Although DIDs and DDOs form a foundation for decentralized identity, they are on
 
 This version of the specification relies on JSON-LD and the RDF graph model for expressing a DDO. Future versions of this specification MAY specify other semantic graph formats for a DDO, such as JXD (JSON XDI Data), a serialization format for the XDI graph model as defined by the [OASIS XDI Core 1.0 specification](http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml).
 
+---
+
 # 12. References
 
 [ABNF] Augmented BNF for Syntax Specifications: ABNF. IETF RFC 5234. [https://tools.ietf.org/html/rfc5234](https://tools.ietf.org/html/rfc5234) 
@@ -1185,8 +1203,9 @@ This version of the specification relies on JSON-LD and the RDF graph model for 
 
 [XDI-CORE] OASIS  XDI Core 1.0 Specification Working Draft 01  [http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml](http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml) 
 
-[XML-DATETIME] W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes. W3C Recommendation. [https://www.w3.org/TR/xmlschema11-2/](https://www.w3.org/TR/xmlschema11-2/) 
+[XML-DATETIME] W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes. W3C Recommendation. [https://www.w3.org/TR/xmlschema11-2/](https://www.w3.org/TR/xmlschema11-2/)
 
+---
 
 # Appendix A: The Generic DID Context for JSON-LD
 
@@ -1233,6 +1252,7 @@ For this implementer's draft, the URL for this context is:
 }
 ```
 
+---
 
 # Appendix B: Standard Key Descriptions
 
@@ -1257,7 +1277,6 @@ As described in section 6, key description is a standard way to describe a publi
 }
  ```
  
-
 ## EdDSA Keys
 [eddsa-key-standard-description.json](../json/eddsa-key-standard-description.json)
 ```json
