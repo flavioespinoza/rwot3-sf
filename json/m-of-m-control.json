@@ -1,0 +1,27 @@
+{
+  "control": [
+    {
+      "type": "OrControl",
+      "signer": [
+        "did:sov:21tDAKCERh95uGgKbJNHYp",
+        "did:sov:8uQhQMGzWxR8vw5P3UWH1j"
+      ]
+    },
+    {
+      "type": "AndControl",
+      "signer": [
+        "did:sov:7P7xfv5AeTSSWcuq6hPptQ",
+        "did:sov:X2v8rvzoCxayhYV5mhESQ1"
+      ]
+    },
+    {
+      "type": "MofNControl",
+      "minimumSignatures": 2,
+      "signer": [
+        "did:sov:4XirzuHiNnTrwfjCMtBEJ6",
+        "did:sov:iCGjJEChRbAdfZbGqZAYT7",
+        "did:sov:WUoAyXB7mhfcVESjypm5ty"
+      ]
+    }
+  ]
+}

@@ -1,25 +1,91 @@
-DID (Decentralized Identifier) Data Model and Generic Syntax 1.0 Implementer’s Draft 01
-=====
+# DID (Decentralized Identifier) Data Model and Generic Syntax 1.0 implementor's Draft 01
 
-**Editors:** Drummond Reed, Les Chasen, Christopher Allen, Ryan Grant
+**EDITORS**:
 
-**Contributors:** Manu Sporny, David Longley, Jason Law, Daniel Hardman, Markus Sabadello, Christian Lundkvist, Jonathan Endersby
+- Flavio Espinoza 
 
-**STATUS: Implementer’s Draft 01, 21 November 2016**
+- Drummond Reed
 
-*ACKNOWLEDGMENTS: Work on this specification has been funded in part by the United States Department of Homeland Security's Science and Technology Directorate under contract HSHQDC-16-R00012-H-SB2016-1-002. The content of this specification does not necessarily reflect the position or the policy of the U.S. Government and no official endorsement should be inferred.*
+- Les Chasen
+ 
+- Christopher Allen
 
-*Work on this specification has also been supported by the [Rebooting the Web of Trust](http://www.weboftrust.info/) group facilitated by Christopher Allen, Brian Weller, Kiara Robles, and Shannon Appelcline.*
+- Ryan Grant
 
-Note: terms in **bold** are defined in the Terminology section.
+---
 
-**ABSTRACT**
+**CONTRIBUTORS:**
 
-**DIDs** (decentralized identifiers) are a new type of identifier intended for verifiable digital identity that is "self-sovereign", i.e., fully under the control of the **identity owner** and not dependent on a centralized registry, identity provider, or certificate authority. DIDs resolve to **DDOs** (DID descriptor objects)—simple JSON documents that contain all the metadata needed to prove ownership and control of a DID. Specifically, a DDO contains a set of **key descriptions**, which are machine-readable descriptions of the identity owner’s public keys, and a set of **service endpoints**, which are resource pointers necessary to initiate trusted interactions with the identity owner. Each DID uses a specific **DID method**, defined in a separate **DID method specification**, to define how the DID is registered, resolved, updated, and revoked on a specific distributed ledger or network.
+- Flavio Espinoza
+
+- Manu Sporny
+
+- David Longley
+
+- Jason Law
+
+- Daniel Hardman
+
+- Markus Sabadello
+
+- Christian Lundkvist
+
+- Jonathan Endersby
+
+---
+
+**STATUS**:
+
+- Flavio Espinoza's
+
+- Draft
+
+- v1.0 
+
+- 6 July 2019
+
+---
+
+**ACKNOWLEDGMENTS**:
+
+Work on this specification has been funded in part by the United States Department of Homeland Security's Science and Technology Directorate under contract `HSHQDC-16-R00012-H-SB2016-1-002`.
+ 
+The content of this specification does not necessarily reflect the position or the policy of the U.S. Government and no official endorsement should be inferred.
+
+---
+
+**SPECIAL THANKS**:
+[Rebooting the Web of Trust Group](http://www.weboftrust.info/)
+
+- Christopher Allen
+
+- Brian Weller
+
+- Kiara Robles
+
+- Shannon Appelcline
+
+---
+
+**TERMINOLOGY**:
+
+- Terms in **bold** are defined in the **Terminology** section.
+
+---
+
+## Abstract
+
+**DIDs** (decentralized identifiers) are a new type of identifier intended for verifiable digital identity that is "self-sovereign", i.e., fully under the control of the **identity owner** and not dependent on a centralized registry, identity provider, or certificate authority. 
+
+DIDs resolve to **DDOs** (DID descriptor objects)—simple JSON documents that contain all the metadata needed to prove ownership and control of a DID. 
+
+Specifically, a DDO contains a set of **key descriptions**, which are machine-readable descriptions of the identity owner’s public keys, and a set of **service endpoints**, which are resource pointers necessary to initiate trusted interactions with the identity owner. 
+
+Each DID uses a specific **DID method**, defined in a separate **DID method specification**, to define how the DID is registered, resolved, updated, and revoked on a specific distributed ledger or network.
 
 **Table of Contents**
 
-[[TOC]]
+[TOC]
 
 # 1. Introduction
 
@@ -83,117 +149,86 @@ This example of a DID uses the Sovrin DID method listed in Appendix A:
 
 Following is an example of a DDO that describes the DID above. This example assumes that the **identity owner**—the entity that controls the private keys for this identity—is authoritative for the DDO. See section 2.2 for an example of a DDO created by a **guardian**. For the authoritative JSON-LD context definition, see Appendix B (the URL for the @context property below is just for illustration). 
 
+
+[ddo-owner-managed.json](../json/ddo-owner-managed.json)
+```json
 {
-
 	"@context": "https://example.org/did/v1",
-
 	"id": "did:sov:21tDAKCERh95uGgKbJNHYp",
-
-	"owner": [{
-
-		"id": "did:sov:21tDAKCERh95uGgKbJNHYp#key-1",
-
-		"type": ["CryptographicKey", "EdDsaPublicKey"],
-
-		"curve": "ed25519",
-
-		"expires": "2017-02-08T16:02:20Z",
-
-		"publicKeyBase64": "lji9qTtkCydxtez/bt1zdLxVMMbz4SzWvlqgOBmURoM="
-
-	}, {
-
-		"id": "did:sov:21tDAKCERh95uGgKbJNHYp#key-2",
-
-		"type": ["CryptographicKey", "RsaPublicKey"],
-
-		"expires": "2017-03-22T00:00:00Z",
-
-		"publicKeyPem": "----BEGIN PUBLIC KEY-----\r\nMIIBOgIBAAJBAKkbSUT9/Q2uBfGRau6/XJyZhcF5abo7b37I5hr3EmwGykdzyk8GSyJK3TOrjyl0sdJsGbFmgQaRyV\r\n-----END PUBLIC KEY-----"
-
-	}],
-
-	"control": [{
-
-		"type": "OrControl",
-
-		"signer": [
-
-			"did:sov:21tDAKCERh95uGgKbJNHYp",
-
-			"did:sov:8uQhQMGzWxR8vw5P3UWH1j"
-
-		]
-
-	}],
-
+	"owner": [
+		{
+			"id": "did:sov:21tDAKCERh95uGgKbJNHYp#key-1",
+			"type": [
+				"CryptographicKey",
+				"EdDsaPublicKey"
+			],
+			"curve": "ed25519",
+			"expires": "2017-02-08T16:02:20Z",
+			"publicKeyBase64": "lji9qTtkCydxtez/bt1zdLxVMMbz4SzWvlqgOBmURoM="
+		},
+		{
+			"id": "did:sov:21tDAKCERh95uGgKbJNHYp#key-2",
+			"type": [
+				"CryptographicKey",
+				"RsaPublicKey"
+			],
+			"expires": "2017-03-22T00:00:00Z",
+			"publicKeyPem": "----BEGIN PUBLIC KEY-----\r\nMIIBOgIBAAJBAKkbSUT9/Q2uBfGRau6/XJyZhcF5abo7b37I5hr3EmwGykdzyk8GSyJK3TOrjyl0sdJsGbFmgQaRyV\r\n-----END PUBLIC KEY-----"
+		}
+	],
+	"control": [
+		{
+			"type": "OrControl",
+			"signer": [
+				"did:sov:21tDAKCERh95uGgKbJNHYp",
+				"did:sov:8uQhQMGzWxR8vw5P3UWH1j"
+			]
+		}
+	],
 	"service": {
-
 		"openid": "https://openid.example.com/456",
-
 		"xdi": "https://xdi.example.com/123"
-
 	},
-
 	"created": "2002-10-10T17:00:00Z",
-
 	"updated": "2016-10-17T02:41:00Z",
-
 	"signature": {
-
 		"type": "RsaSignature2016",
-
 		"created": "2016-02-08T16:02:20Z",
-
 		"creator": "did:sov:8uQhQMGzWxR8vw5P3UWH1j#key/1",
-
 		"signatureValue": "IOmA4R7TfhkYTYW87z640O3GYFldw0yqie9Wl1kZ5OBYNAKOwG5uOsPRK8/2C4STOWF+83cMcbZ3CBMq2/gi25s="
-
 	}
-
 }
+```
 
 ## 2.2. Example Guardian-Managed DDO
 
 Following is a second example of a DDO that describes the DID above. In this case the DDO describes a **dependent**—an entity who is not currently in a position to control the private keys for this identity. This DDO was created by a **guardian**—a separate identity owner with its own DID that serves as a trustee for the dependent. Note that while this DDO asserts a set of service endpoints, it does not yet contain a set of key descriptions because the dependent does not yet have its own set of private keys.
 
+[ddo-guardian-managed.json](../json/ddo-guardian-managed.json)
+```json
 {
-
-	"@context": "https://example.org/did/v1",
-
-	"id": "did:sov:21tDAKCERh95uGgKbJNHYp",
-
-	"guardian": "did:sov:8uQhQMGzWxR8vw5P3UWH1j"
-
-	"control": [ "did:sov:8uQhQMGzWxR8vw5P3UWH1j" ],
-
-	"service": {
-
-		"openid": "https://openid.example.com/456",
-
-		"xdi": "https://xdi.example.com/123"
-
-	},
-
-	"type": "http://schema.org/Person",
-
-	"created": "2002-10-10T17:00:00Z",
-
-	"updated": "2016-10-17T02:41:00Z",
-
-	"signature": {
-
-		"type": "RsaSignature2016",
-
-		"created": "2016-02-08T16:02:20Z",
-
-		"creator": "did:sov:8uQhQMGzWxR8vw5P3UWH1j#key-1",
-
-		"signatureValue": "IOmA4R7TfhkYTYW87z640O3GYFldw0yqie9Wl1kZ5OBYNAKOwG5uOsPRK8/2C4STOWF+83cMcbZ3CBMq2/gi25s="
-
-	}
-
+  "@context": "https://example.org/did/v1",
+  "id": "did:sov:21tDAKCERh95uGgKbJNHYp",
+  "guardian": "did:sov:8uQhQMGzWxR8vw5P3UWH1j",
+  "control": [
+    "did:sov:8uQhQMGzWxR8vw5P3UWH1j"
+  ],
+  "service": {
+    "openid": "https://openid.example.com/456",
+    "xdi": "https://xdi.example.com/123"
+  },
+  "type": "http://schema.org/Person",
+  "created": "2002-10-10T17:00:00Z",
+  "updated": "2016-10-17T02:41:00Z",
+  "signature": {
+    "type": "RsaSignature2016",
+    "created": "2016-02-08T16:02:20Z",
+    "creator": "did:sov:8uQhQMGzWxR8vw5P3UWH1j#key-1",
+    "signatureValue": "IOmA4R7TfhkYTYW87z640O3GYFldw0yqie9Wl1kZ5OBYNAKOwG5uOsPRK8/2C4STOWF+83cMcbZ3CBMq2/gi25s="
+  }
 }
+```
+
 
 # 3. Terminology and Acronyms
 
@@ -343,7 +378,8 @@ A DID is similar to a UUID except: (a) it can be resolved or dereferenced to a s
 The generic DID scheme is a URI scheme conformant with [RFC 3986](https://www.ietf.org/rfc/rfc3986.txt). It consists of a DID followed by an optional path and/or fragment. The term **DID** refers only to the identifier conforming to the did rule in the ABNF below; when used alone, it does not include a path or fragment. A DID that may optionally include a path and/or fragment is called a **DID reference**.
 
 Following is the ABNF definition using the syntax in [RFC 5234](https://tools.ietf.org/html/rfc5234) (which defines ALPHA as upper or lowercase A-Z).
-```
+
+```bash
 did-reference      = did [ "/" did-path ] [ "#" did-fragment ]
 did                = "did:" method ":" specific-idstring                  
 method             = 1*methodchar
@@ -418,11 +454,15 @@ JSON objects in JSON-LD format must include a JSON-LD context statement. The rul
 
 Example (using an example URL):
 
+
+```json
 {
 
 	"@context": "https://example.org/did/v1"
 
 }
+```
+
 
 DID method specifications MAY define their own JSON-LD contexts. However it is NOT RECOMMENDED to define a new context unless necessary to properly implement the method. Method-specific contexts MUST NOT override the terms defined in the generic DID context listed in Appendix B.
 
@@ -439,12 +479,14 @@ The primary DID is the primary index key for the DDO, i.e., it is DID described 
 4. When this DDO is registered with the target distributed ledger or network, the registered DID MUST match this primary DID value.
 
 Example:
-
+```json
 {
 
 	"id": "did:sov:21tDAKCERh95uGgKbJNHYp"
 
 }
+```
+
 
 ## 6.3. Guardian (Required If No Proof of Ownership)
 
@@ -464,11 +506,15 @@ The rules for a guardian are:
 
 Example:
 
+
+```json
 {
 
 	"guardian": "did:sov:8uQhQMGzWxR8vw5P3UWH1j"
 
 }
+```
+
 
 ## 6.4. Proof of Ownership (Required If No Guardian)
 
@@ -486,35 +532,34 @@ The rules for Proof of Ownership are:
 
 5. If this array contains more than one key description, each key description MUST include a property with the key id whose value is a DID reference consisting of the primary DID and a DID fragment. This DID reference uniquely identifies this key description. 
 
-Example:
 
+[proof-of-ownership.json](../json/proof-of-ownership.json)
+```json
 {
-
-	"owner": [{
-
-		"id": "did:sov:21tDAKCERh95uGgKbJNHYp#key/1",
-
-		"type": ["CryptographicKey", "EdDsaSAPublicKey"],
-
-		"curve": "ed25519",
-
-		"expires": "2017-02-08T16:02:20Z",
-
-		"publicKeyBase64": "IOmA4R7TfhkYTYW87z640O3GYFldw0yqie9Wl1kZ5OBYNAKOwG5uOsPRK8/2C4STOWF+83cMcbZ3CBMq2/gi25s="
-
-	}, {
-
-		"id": "did:sov:21tDAKCERh95uGgKbJNHYp#key/2",
-
-		"type": ["CryptographicKey", "RsaPublicKey"],
-
-		"expires": "2017-03-22T00:00:00Z",
-
-		"publicKeyBase64": "MIIBOgIBAAJBAKkbSUT9/Q2uBfGRau6/XJyZhcF5abo7b37I5hr3EmwGykdzyk8GSyJK3TOrjyl0sdJsGbFmgQaRyV"
-
-	}]
-
+  "owner": [
+    {
+      "id": "did:sov:21tDAKCERh95uGgKbJNHYp#key/1",
+      "type": [
+        "CryptographicKey",
+        "EdDsaSAPublicKey"
+      ],
+      "curve": "ed25519",
+      "expires": "2017-02-08T16:02:20Z",
+      "publicKeyBase64": "IOmA4R7TfhkYTYW87z640O3GYFldw0yqie9Wl1kZ5OBYNAKOwG5uOsPRK8/2C4STOWF+83cMcbZ3CBMq2/gi25s="
+    },
+    {
+      "id": "did:sov:21tDAKCERh95uGgKbJNHYp#key/2",
+      "type": [
+        "CryptographicKey",
+        "RsaPublicKey"
+      ],
+      "expires": "2017-03-22T00:00:00Z",
+      "publicKeyBase64": "MIIBOgIBAAJBAKkbSUT9/Q2uBfGRau6/XJyZhcF5abo7b37I5hr3EmwGykdzyk8GSyJK3TOrjyl0sdJsGbFmgQaRyV"
+    }
+  ]
 }
+```
+
 
 Note that caching and expiration of the keys in DDO key descriptions is entirely the responsibility of DID resolvers and other clients. See section 9.6.
 
@@ -576,50 +621,37 @@ If the number of verified update signatures from DIDs in this array equals or ex
 
 Following is an example of a Proof of Control property implementing these rules:
 
+
+[m-of-m-control.json](../json/m-of-m-control.json)
+```json
 {
-
-	"control": [{
-
-		"type": "OrControl",
-
-		"signer": [
-                "did:sov:21tDAKCERh95uGgKbJNHYp", 
-
-                "did:sov:8uQhQMGzWxR8vw5P3UWH1j"
-
-           ]
-
-	}, {
-
-		"type": "AndControl",
-
-		"signer": [
-
-                "did:sov:7P7xfv5AeTSSWcuq6hPptQ", 
-
-                "did:sov:X2v8rvzoCxayhYV5mhESQ1"
-
-           ]
-
-	}, {
-
-		"type": "MofNControl",
-
-		"minimumSignatures": 2,
-
-		"signer": [
-
-                "did:sov:4XirzuHiNnTrwfjCMtBEJ6", 
-
-                "did:sov:iCGjJEChRbAdfZbGqZAYT7", 
-
-                "did:sov:WUoAyXB7mhfcVESjypm5ty"
-
-           ]
-
-	}]
-
+  "control": [
+    {
+      "type": "OrControl",
+      "signer": [
+        "did:sov:21tDAKCERh95uGgKbJNHYp",
+        "did:sov:8uQhQMGzWxR8vw5P3UWH1j"
+      ]
+    },
+    {
+      "type": "AndControl",
+      "signer": [
+        "did:sov:7P7xfv5AeTSSWcuq6hPptQ",
+        "did:sov:X2v8rvzoCxayhYV5mhESQ1"
+      ]
+    },
+    {
+      "type": "MofNControl",
+      "minimumSignatures": 2,
+      "signer": [
+        "did:sov:4XirzuHiNnTrwfjCMtBEJ6",
+        "did:sov:iCGjJEChRbAdfZbGqZAYT7",
+        "did:sov:WUoAyXB7mhfcVESjypm5ty"
+      ]
+    }
+  ]
 }
+```
 
 ## 6.6. Service Endpoint References (Optional)
 
@@ -639,17 +671,16 @@ The rules for service endpoints are:
 
 Example:
 
+[service-reference-endpoint.json](../json/service-reference-endpoint.json)
+```json
 {
-
 	"service": {
-
 		"openid": "https://openid.example.com/456",
-
 		"xdi": "https://xdi.example.com/123"
-
 	}
-
 }
+```
+
 
 See sections 9.1 and 9.3 for further security considerations regarding authentication service endpoints.
 
@@ -669,11 +700,15 @@ Standard metadata for identity records includes a timestamp of the original crea
 
 Example:
 
+
+```json
 {
 
 	"created": "2002-10-10T17:00:00Z"
 
 }
+```
+
 
 ## 6.8. Updated (Optional)
 
@@ -687,11 +722,15 @@ Standard metadata for identity records includes a timestamp of the most recent c
 
 Example:
 
+
+```json
 {
 
 	"updated": "2016-10-17T02:41:00Z"
 
 }
+```
+
 
 ## 6.9. Signature (Optional)
 
@@ -713,21 +752,18 @@ The rules for a signature are:
 
 Example:
 
+[json/signature.json](../json/signature.json)
+```json
 {
-
-	"signature": {
-
-		"type": "LinkedDataSignature2015",
-
-		"created": "2016-02-08T16:02:20Z",
-
-		"creator": "did:sov:8uQhQMGzWxR8vw5P3UWH1ja#keys-1",
-
-		"signatureValue": "QNB13Y7Q9oLlDLL6AHyL31OE5fLji9DwJSA8qnv81oRaKonij8m+Jv4XdiEYvJ97iRlzKU/92/0LafSL5JftEgl960DLcbqMFxOtbAmFOIMa7eDcrgTL5ytXeYCYKLjHQG3s8a3UKDKRuEK54qK1G5hGKGoLgAVa6xgcDLjW7M19PEJV/c3HpGA7Eez6VFMoTt4yESjZvOXC97xN3KpshOx2HT/btgUbo0XjA1Oi0QHdgrLcUsQGt6w23RjeSToalrsA1G69OFeN2OiQrz9Jb4561hvKLSyWObwRmS6n5Vgr5xkvUm6MONRq0Vg33kXevoVM64KTBkISul61tzjn4w=="
-
-	}
-
+  "signature": {
+    "type": "LinkedDataSignature2015",
+    "created": "2016-02-08T16:02:20Z",
+    "creator": "did:sov:8uQhQMGzWxR8vw5P3UWH1ja#keys-1",
+    "signatureValue": "QNB13Y7Q9oLlDLL6AHyL31OE5fLji9DwJSA8qnv81oRaKonij8m+Jv4XdiEYvJ97iRlzKU/92/0LafSL5JftEgl960DLcbqMFxOtbAmFOIMa7eDcrgTL5ytXeYCYKLjHQG3s8a3UKDKRuEK54qK1G5hGKGoLgAVa6xgcDLjW7M19PEJV/c3HpGA7Eez6VFMoTt4yESjZvOXC97xN3KpshOx2HT/btgUbo0XjA1Oi0QHdgrLcUsQGt6w23RjeSToalrsA1G69OFeN2OiQrz9Jb4561hvKLSyWObwRmS6n5Vgr5xkvUm6MONRq0Vg33kXevoVM64KTBkISul61tzjn4w=="
+  }
 }
+```
+
 
 # 7. DID Operations
 
@@ -1011,69 +1047,47 @@ This table summarizes the DID method specifications currently in development. Th
 
 This JSON-LD document is the generic context for all DDOs. See section 6.1 for the rules for using this context.
 
-For this implementer’s draft, the URL for this context is:
+For this implementer's draft, the URL for this context is:
 
-[https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/final-documents/did-context-v1-draft-01.txt](https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/final-documents/did-context-v1-draft-01.txt) 
+[did-json-ld-generic-context.json](..json/did-json-ld-generic-context.json)
 
+
+```json
 {
-
-	"@context": ["https://w3id.org/identity/v1", {
-
-		"ctrl": "https://w3id.org/control#",
-
-		"ddo": "https://w3id.org/ddo#",
-
-		"control": {
-
-			"@id": "ddo:control",
-
-			"@type": "@id"
-
-		},
-
-		"curve": "sec:curve",
-
-		"guardian": "ddo:guardian",
-
-		"minimumSignatures": {
-
-			"@id": "ctrl:minimumSignatures",
-
-			"@type": "xsd:integer"
-
-		},
-
-		"openid": "ddo:openid",
-
-		"publicKeyBase64": "sec:publicKeyBase64",
-
-		"service": "ddo:service",
-
-		"signer": "sec:signer",
-
-		"updated": {
-
-			"@id": "ddo:updated",
-
-			"@type": "xsd:dateTime"
-
-		},
-
-		"xdi": "ddo:xdi",
-
-		"EdDsaPublicKey": "sec:EdDsaPublicKey",
-
-		"RsaPublicKey": "sec:RsaPublicKey",
-
-		"OrControl": "ctrl:OrControl",
-
-		"AndControl": "ctrl:AndControl",
-
-		"MofNControl": "ctrl:MofNControl"
-
-	}]
-
+	"@context": [
+		"https://w3id.org/identity/v1",
+		{
+			"ctrl": "https://w3id.org/control#",
+			"ddo": "https://w3id.org/ddo#",
+			"control": {
+				"@id": "ddo:control",
+				"@type": "@id"
+			},
+			"curve": "sec:curve",
+			"guardian": "ddo:guardian",
+			"minimumSignatures": {
+				"@id": "ctrl:minimumSignatures",
+				"@type": "xsd:integer"
+			},
+			"openid": "ddo:openid",
+			"publicKeyBase64": "sec:publicKeyBase64",
+			"service": "ddo:service",
+			"signer": "sec:signer",
+			"updated": {
+				"@id": "ddo:updated",
+				"@type": "xsd:dateTime"
+			},
+			"xdi": "ddo:xdi",
+			"EdDsaPublicKey": "sec:EdDsaPublicKey",
+			"RsaPublicKey": "sec:RsaPublicKey",
+			"OrControl": "ctrl:OrControl",
+			"AndControl": "ctrl:AndControl",
+			"MofNControl": "ctrl:MofNControl"
+		}
+	]
 }
+```
+
 
 # Appendix C: Standard Key Descriptions
 
@@ -1081,38 +1095,40 @@ As described in section 6, key description is a standard way to describe a publi
 
 ## RSA Keys
 
-{
-
-	"owner": [{
-
-		"id": "did:sov:21tDAKCERh95uGgKbJNHYp#key/2",
-
-		"type": ["CryptographicKey", "RsaPublicKey"],
-
-		"expires": "2017-03-22T00:00:00Z",
-
-		"publicKeyBase64": "MIIBOgIBAAJBAKkbSUT9/Q2uBfGRau6/XJyZhcF5abo7b37I5hr3EmwGykdzyk8GSyJK3TOrjyl0sdJsGbFmgQaRyV"
-
-	}]
-
+ [rsa-key-standard-description.json](../json/rsa-key-standard-description.json)
+ ```json
+ {
+	"owner": [
+		{
+			"id": "did:sov:21tDAKCERh95uGgKbJNHYp#key/2",
+			"type": [
+				"CryptographicKey",
+				"RsaPublicKey"
+			],
+			"expires": "2017-03-22T00:00:00Z",
+			"publicKeyBase64": "MIIBOgIBAAJBAKkbSUT9/Q2uBfGRau6/XJyZhcF5abo7b37I5hr3EmwGykdzyk8GSyJK3TOrjyl0sdJsGbFmgQaRyV"
+		}
+	]
 }
+ ```
+ 
 
 ## EdDSA Keys
-
+[eddsa-key-standard-description.json](../json/eddsa-key-standard-description.json)
+```json
 {
-
-	"owner": [{
-
-		"id": "did:sov:21tDAKCERh95uGgKbJNHYp#key/1",
-
-		"type": ["CryptographicKey", "EdDsaSAPublicKey"],
-
-		"curve": "ed25519",
-
-		"expires": "2017-02-08T16:02:20Z",
-
-		"publicKeyBase64": "IOmA4R7TfhkYTYW87z640O3GYFldw0yqie9Wl1kZ5OBYNAKOwG5uOsPRK8/2C4STOWF+83cMcbZ3CBMq2/gi25s="
-
-	}]
-
+	"owner": [
+		{
+			"id": "did:sov:21tDAKCERh95uGgKbJNHYp#key/1",
+			"type": [
+				"CryptographicKey",
+				"EdDsaSAPublicKey"
+			],
+			"curve": "ed25519",
+			"expires": "2017-02-08T16:02:20Z",
+			"publicKeyBase64": "IOmA4R7TfhkYTYW87z640O3GYFldw0yqie9Wl1kZ5OBYNAKOwG5uOsPRK8/2C4STOWF+83cMcbZ3CBMq2/gi25s="
+		}
+	]
 }
+```
+

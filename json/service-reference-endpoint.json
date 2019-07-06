@@ -1,0 +1,6 @@
+{
+	"service": {
+		"openid": "https://openid.example.com/456",
+		"xdi": "https://xdi.example.com/123"
+	}
+}
