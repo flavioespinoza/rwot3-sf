@@ -9,8 +9,7 @@
 
       
       
-			
-			
+      
       
       
       
@@ -453,228 +452,150 @@ html body iframe .tabs.bartabs {
       <div class="mume markdown-preview  ">
       <h1 class="mume-header" id="did-decentralized-identifier-data-model-and-generic-syntax-10-implementors-draft-01">DID (Decentralized Identifier) Data Model and Generic Syntax 1.0 implementor&apos;s Draft 01</h1>
 
-<p><strong>EDITORS</strong>:</p>
+<p><strong>Document Status</strong>:</p>
 <ul>
-<li>
-<p>Flavio Espinoza</p>
-</li>
-<li>
-<p>Drummond Reed</p>
-</li>
-<li>
-<p>Les Chasen</p>
-</li>
-<li>
-<p>Christopher Allen</p>
-</li>
-<li>
-<p>Ryan Grant</p>
-</li>
-</ul>
-<hr>
-<p><strong>CONTRIBUTORS:</strong></p>
-<ul>
-<li>
-<p>Flavio Espinoza</p>
-</li>
-<li>
-<p>Manu Sporny</p>
-</li>
-<li>
-<p>David Longley</p>
-</li>
-<li>
-<p>Jason Law</p>
-</li>
-<li>
-<p>Daniel Hardman</p>
-</li>
-<li>
-<p>Markus Sabadello</p>
-</li>
-<li>
-<p>Christian Lundkvist</p>
-</li>
-<li>
-<p>Jonathan Endersby</p>
-</li>
-</ul>
-<hr>
-<p><strong>STATUS</strong>:</p>
-<ul>
-<li>
-<p>Flavio Espinoza&apos;s</p>
-</li>
-<li>
-<p>Draft</p>
-</li>
-<li>
-<p>v1.0</p>
-</li>
-<li>
-<p>6 July 2019</p>
-</li>
-</ul>
-<hr>
-<p><strong>ACKNOWLEDGMENTS</strong>:</p>
-<p>Work on this specification has been funded in part by the United States Department of Homeland Security&apos;s Science and Technology Directorate under contract <code>HSHQDC-16-R00012-H-SB2016-1-002</code>.</p>
-<p>The content of this specification does not necessarily reflect the position or the policy of the U.S. Government and no official endorsement should be inferred.</p>
-<hr>
-<p><strong>SPECIAL THANKS</strong>:<br>
-<a href="http://www.weboftrust.info/">Rebooting the Web of Trust Group</a></p>
-<ul>
-<li>
-<p>Christopher Allen</p>
-</li>
-<li>
-<p>Brian Weller</p>
-</li>
-<li>
-<p>Kiara Robles</p>
-</li>
-<li>
-<p>Shannon Appelcline</p>
-</li>
-</ul>
-<hr>
-<p><strong>TERMINOLOGY</strong>:</p>
-<ul>
-<li>Terms in <strong>bold</strong> are defined in the <strong>Terminology</strong> section.</li>
+<li><strong>Flavio Espinoza&apos;s</strong><br>
+draft<br>
+v1.0<br>
+6 July 2019</li>
 </ul>
 <hr>
 <h1 class="mume-header" id="abstract">Abstract</h1>
 
-<p><strong>DIDs</strong> (decentralized identifiers) are a new type of identifier intended for verifiable digital identity that is &quot;self-sovereign&quot;, i.e., fully under the control of the <strong>identity owner</strong> and not dependent on a centralized registry, identity provider, or certificate authority.</p>
+<h3 class="mume-header" id="decentralized-identifiers-did">Decentralized Identifiers (DID)</h3>
+
+<p><strong>DIDs</strong> are a new type of identifier intended for verifiable digital identity that is &quot;self-sovereign&quot;, i.e., fully under the control of the <strong>identity owner</strong> and not dependent on a centralized registry, identity provider, or certificate authority.</p>
 <p>DIDs resolve to <strong>DDOs</strong> (DID descriptor objects)&#x2014;simple JSON documents that contain all the metadata needed to prove ownership and control of a DID.</p>
 <p>Specifically, a DDO contains a set of <strong>key descriptions</strong>, which are machine-readable descriptions of the identity owner&#x2019;s public keys, and a set of <strong>service endpoints</strong>, which are resource pointers necessary to initiate trusted interactions with the identity owner.</p>
 <p>Each DID uses a specific <strong>DID method</strong>, defined in a separate <strong>DID method specification</strong>, to define how the DID is registered, resolved, updated, and revoked on a specific distributed ledger or network.</p>
-<p>---TOC</p>
-
-
-
-
-<ul>
-<li><a href="#did-decentralized-identifier-data-model-and-generic-syntax-10-implementors-draft-01">DID (Decentralized Identifier) Data Model and Generic Syntax 1.0 implementor&apos;s Draft 01</a></li>
-<li><a href="#abstract">Abstract</a></li>
-<li><a href="#table-of-contents">Table of Contents</a></li>
-<li><a href="#1-introduction">1. Introduction</a>
-<ul>
-<li><a href="#11-overview">1.1 Overview</a></li>
-<li><a href="#12-uri-url-and-urn">1.2. URI, URL, and URN</a></li>
-<li><a href="#13-uri">1.3. URI</a></li>
-<li><a href="#14-url">1.4. URL</a></li>
-<li><a href="#15-urn">1.5 URN</a></li>
-<li><a href="#16-motivations-for-dids">1.6. Motivations for DIDs</a></li>
-<li><a href="#17-the-role-of-human-friendly-identifiers">1.7 The Role of Human-Friendly Identifiers</a></li>
-<li><a href="#18-purpose-of-this-specification">1.8. Purpose of This Specification</a></li>
-</ul>
-</li>
-<li><a href="#2-dids-and-ddos">2. DIDs and DDOs</a>
-<ul>
-<li><a href="#21-proposed-did-method-specifications">2.1. Proposed DID Method Specifications</a></li>
-<li><a href="#22-example-sovereign-did">2.2. Example Sovereign DID</a></li>
-<li><a href="#23-example-owner-managed-ddo">2.3. Example Owner-Managed DDO</a></li>
-<li><a href="#24-example-guardian-managed-ddo">2.4. Example Guardian-Managed DDO</a></li>
-</ul>
-</li>
-<li><a href="#3-terminology-and-acronyms">3. Terminology and Acronyms</a></li>
-<li><a href="#4-design-goals-principles">4. Design Goals &amp; Principles</a></li>
-<li><a href="#5-dids-decentralized-identifiers">5. DIDs (Decentralized Identifiers)</a>
-<ul>
-<li><a href="#51-the-generic-did-scheme">5.1. The Generic DID Scheme</a></li>
-<li><a href="#52-specific-did-method-schemes">5.2. Specific DID Method Schemes</a></li>
-<li><a href="#53-did-paths">5.3 DID Paths</a></li>
-<li><a href="#54-did-fragments">5.4 DID Fragments</a></li>
-<li><a href="#55-did-normalization">5.5 DID Normalization</a></li>
-<li><a href="#56-did-persistence">5.6 DID Persistence</a></li>
-</ul>
-</li>
-<li><a href="#6-ddos-did-descriptor-objects">6. DDOs (DID Descriptor Objects)</a>
-<ul>
-<li><a href="#61-context-required">6.1. Context (Required)</a></li>
-<li><a href="#62-primary-did-required">6.2. Primary DID (Required)</a></li>
-<li><a href="#63-guardian-required-if-no-proof-of-ownership">6.3. Guardian (Required If No Proof of Ownership)</a></li>
-<li><a href="#64-proof-of-ownership-required-if-no-guardian">6.4. Proof of Ownership (Required If No Guardian)</a></li>
-<li><a href="#65-proof-of-control-optional-and-method-specific">6.5. Proof of Control (Optional and Method-Specific)</a>
-<ul>
-<li><a href="#651-or-control">6.5.1 &quot;Or&quot; Control</a></li>
-<li><a href="#652-and-control">6.5.2 &quot;And&quot; Control</a></li>
-<li><a href="#653-m-of-n-control">6.5.3 &quot;M-of-N&quot; Control</a></li>
-</ul>
-</li>
-<li><a href="#66-service-endpoint-references-optional">6.6. Service Endpoint References (Optional)</a></li>
-<li><a href="#67-created-optional">6.7. Created (Optional)</a></li>
-<li><a href="#68-updated-optional">6.8. Updated (Optional)</a></li>
-<li><a href="#69-signature-optional">6.9. Signature (Optional)</a></li>
-</ul>
-</li>
-<li><a href="#7-did-operations">7. DID Operations</a>
-<ul>
-<li><a href="#71-create">7.1. Create</a></li>
-<li><a href="#72-readverify">7.2. Read/Verify</a></li>
-<li><a href="#73-update">7.3. Update</a></li>
-<li><a href="#74-deleterevoke">7.4. Delete/Revoke</a></li>
-</ul>
-</li>
-<li><a href="#8-did-resolvers">8. DID Resolvers</a></li>
-<li><a href="#9-security-considerations">9. Security Considerations</a>
-<ul>
-<li><a href="#91-requirements-of-did-method-specifications">9.1. Requirements of DID Method Specifications</a></li>
-<li><a href="#92-binding-of-identity">9.2 Binding of Identity</a>
-<ul>
-<li><a href="#921-proving-ownership-of-a-did-and-ddo">9.2.1 Proving Ownership of a DID and DDO</a></li>
-<li><a href="#922-proving-ownership-of-a-public-key">9.2.2 Proving Ownership of a Public Key</a></li>
-<li><a href="#923-identity-owner-authentication-and-verifiable-claims">9.2.3 Identity Owner Authentication and Verifiable Claims</a></li>
-</ul>
-</li>
-<li><a href="#93-authentication-service-endpoints">9.3 Authentication Service Endpoints</a></li>
-<li><a href="#94-non-repudiation">9.4 Non-Repudiation</a></li>
-<li><a href="#95-notification-of-ddo-changes">9.5 Notification of DDO Changes</a></li>
-<li><a href="#96-key-and-signature-expiration">9.6 Key and Signature Expiration</a></li>
-<li><a href="#97-key-revocation-and-recovery">9.7 Key Revocation and Recovery</a></li>
-</ul>
-</li>
-<li><a href="#10-privacy-considerations">10. Privacy Considerations</a>
-<ul>
-<li><a href="#101-requirements-of-did-method-specifications">10.1 Requirements of DID Method Specifications</a></li>
-<li><a href="#102-keep-personally-identifiable-information-pii-off-ledger">10.2 Keep Personally-Identifiable Information (PII) Off-Ledger</a></li>
-<li><a href="#103-did-correlation-risks-and-pseudonymous-dids">10.3 DID Correlation Risks and Pseudonymous DIDs</a></li>
-<li><a href="#104-ddo-correlation-risks">10.4 DDO Correlation Risks</a></li>
-<li><a href="#105-herd-privacy">10.5 Herd Privacy</a></li>
-</ul>
-</li>
-<li><a href="#11-future-work">11. Future Work</a>
-<ul>
-<li><a href="#111-upper-limits-on-did-character-length">11.1 Upper Limits on DID Character Length</a></li>
-<li><a href="#112-equivalence">11.2 Equivalence</a></li>
-<li><a href="#113-timestamps">11.3 Timestamps</a></li>
-<li><a href="#114-time-locks-and-ddo-recovery">11.4 Time Locks and DDO Recovery</a></li>
-<li><a href="#115-smart-signatures">11.5 Smart Signatures</a></li>
-<li><a href="#116-verifiable-claims">11.6 Verifiable Claims</a></li>
-<li><a href="#117-alternate-serializations-and-graph-models">11.7 Alternate Serializations and Graph Models</a></li>
-</ul>
-</li>
-<li><a href="#12-references">12. References</a></li>
-<li><a href="#appendix-a-the-generic-did-context-for-json-ld">Appendix A: The Generic DID Context for JSON-LD</a></li>
-<li><a href="#appendix-b-standard-key-descriptions">Appendix B: Standard Key Descriptions</a>
-<ul>
-<li><a href="#rsa-keys">RSA Keys</a></li>
-<li><a href="#eddsa-keys">EdDSA Keys</a></li>
-</ul>
-</li>
-</ul>
-
-
-
-
 <hr>
 <h1 class="mume-header" id="table-of-contents">Table of Contents</h1>
 
 <details>
 <summary>expand for table of contents</summary>
 <br>
+<ul>
+	<li><a href="#did-decentralized-identifier-data-model-and-generic-syntax-10-implementors-draft-01">DID (Decentralized
+			Identifier) Data Model and Generic Syntax 1.0 implementor&apos;s Draft 01</a></li>
+	<li><a href="#abstract">Abstract</a></li>
+	<li><a href="#table-of-contents">Table of Contents</a></li>
+	<li><a href="#1-introduction">1. Introduction</a>
+		<ul>
+			<li><a href="#11-overview">1.1 Overview</a></li>
+			<li><a href="#12-uri-url-and-urn">1.2. URI, URL, and URN</a></li>
+			<li><a href="#13-uri">1.3. URI</a></li>
+			<li><a href="#14-url">1.4. URL</a></li>
+			<li><a href="#15-urn">1.5 URN</a></li>
+			<li><a href="#16-motivations-for-dids">1.6. Motivations for DIDs</a></li>
+			<li><a href="#17-the-role-of-human-friendly-identifiers">1.7 The Role of Human-Friendly Identifiers</a></li>
+			<li><a href="#18-purpose-of-this-specification">1.8. Purpose of This Specification</a></li>
+		</ul>
+	</li>
+	<li><a href="#2-dids-and-ddos">2. DIDs and DDOs</a>
+		<ul>
+			<li><a href="#21-proposed-did-method-specifications">2.1. Proposed DID Method Specifications</a></li>
+			<li><a href="#22-example-sovereign-did">2.2. Example Sovereign DID</a></li>
+			<li><a href="#23-example-owner-managed-ddo">2.3. Example Owner-Managed DDO</a></li>
+			<li><a href="#24-example-guardian-managed-ddo">2.4. Example Guardian-Managed DDO</a></li>
+		</ul>
+	</li>
+	<li><a href="#3-terminology-and-acronyms">3. Terminology and Acronyms</a></li>
+	<li><a href="#4-design-goals-principles">4. Design Goals &amp; Principles</a></li>
+	<li><a href="#5-dids-decentralized-identifiers">5. DIDs (Decentralized Identifiers)</a>
+		<ul>
+			<li><a href="#51-the-generic-did-scheme">5.1. The Generic DID Scheme</a></li>
+			<li><a href="#52-specific-did-method-schemes">5.2. Specific DID Method Schemes</a></li>
+			<li><a href="#53-did-paths">5.3 DID Paths</a></li>
+			<li><a href="#54-did-fragments">5.4 DID Fragments</a></li>
+			<li><a href="#55-did-normalization">5.5 DID Normalization</a></li>
+			<li><a href="#56-did-persistence">5.6 DID Persistence</a></li>
+		</ul>
+	</li>
+	<li><a href="#6-ddos-did-descriptor-objects">6. DDOs (DID Descriptor Objects)</a>
+		<ul>
+			<li><a href="#61-context-required">6.1. Context (Required)</a></li>
+			<li><a href="#62-primary-did-required">6.2. Primary DID (Required)</a></li>
+			<li><a href="#63-guardian-required-if-no-proof-of-ownership">6.3. Guardian (Required If No Proof of Ownership)</a>
+			</li>
+			<li><a href="#64-proof-of-ownership-required-if-no-guardian">6.4. Proof of Ownership (Required If No Guardian)</a>
+			</li>
+			<li><a href="#65-proof-of-control-optional-and-method-specific">6.5. Proof of Control (Optional and
+					Method-Specific)</a>
+				<ul>
+					<li><a href="#651-or-control">6.5.1 &quot;Or&quot; Control</a></li>
+					<li><a href="#652-and-control">6.5.2 &quot;And&quot; Control</a></li>
+					<li><a href="#653-m-of-n-control">6.5.3 &quot;M-of-N&quot; Control</a></li>
+				</ul>
+			</li>
+			<li><a href="#66-service-endpoint-references-optional">6.6. Service Endpoint References (Optional)</a></li>
+			<li><a href="#67-created-optional">6.7. Created (Optional)</a></li>
+			<li><a href="#68-updated-optional">6.8. Updated (Optional)</a></li>
+			<li><a href="#69-signature-optional">6.9. Signature (Optional)</a></li>
+		</ul>
+	</li>
+	<li><a href="#7-did-operations">7. DID Operations</a>
+		<ul>
+			<li><a href="#71-create">7.1. Create</a></li>
+			<li><a href="#72-readverify">7.2. Read/Verify</a></li>
+			<li><a href="#73-update">7.3. Update</a></li>
+			<li><a href="#74-deleterevoke">7.4. Delete/Revoke</a></li>
+		</ul>
+	</li>
+	<li><a href="#8-did-resolvers">8. DID Resolvers</a></li>
+	<li><a href="#9-security-considerations">9. Security Considerations</a>
+		<ul>
+			<li><a href="#91-requirements-of-did-method-specifications">9.1. Requirements of DID Method Specifications</a>
+			</li>
+			<li><a href="#92-binding-of-identity">9.2 Binding of Identity</a>
+				<ul>
+					<li><a href="#921-proving-ownership-of-a-did-and-ddo">9.2.1 Proving Ownership of a DID and DDO</a></li>
+					<li><a href="#922-proving-ownership-of-a-public-key">9.2.2 Proving Ownership of a Public Key</a></li>
+					<li><a href="#923-identity-owner-authentication-and-verifiable-claims">9.2.3 Identity Owner Authentication and
+							Verifiable Claims</a></li>
+				</ul>
+			</li>
+			<li><a href="#93-authentication-service-endpoints">9.3 Authentication Service Endpoints</a></li>
+			<li><a href="#94-non-repudiation">9.4 Non-Repudiation</a></li>
+			<li><a href="#95-notification-of-ddo-changes">9.5 Notification of DDO Changes</a></li>
+			<li><a href="#96-key-and-signature-expiration">9.6 Key and Signature Expiration</a></li>
+			<li><a href="#97-key-revocation-and-recovery">9.7 Key Revocation and Recovery</a></li>
+		</ul>
+	</li>
+	<li><a href="#10-privacy-considerations">10. Privacy Considerations</a>
+		<ul>
+			<li><a href="#101-requirements-of-did-method-specifications">10.1 Requirements of DID Method Specifications</a>
+			</li>
+			<li><a href="#102-keep-personally-identifiable-information-pii-off-ledger">10.2 Keep Personally-Identifiable
+					Information (PII) Off-Ledger</a></li>
+			<li><a href="#103-did-correlation-risks-and-pseudonymous-dids">10.3 DID Correlation Risks and Pseudonymous
+					DIDs</a></li>
+			<li><a href="#104-ddo-correlation-risks">10.4 DDO Correlation Risks</a></li>
+			<li><a href="#105-herd-privacy">10.5 Herd Privacy</a></li>
+		</ul>
+	</li>
+	<li><a href="#11-future-work">11. Future Work</a>
+		<ul>
+			<li><a href="#111-upper-limits-on-did-character-length">11.1 Upper Limits on DID Character Length</a></li>
+			<li><a href="#112-equivalence">11.2 Equivalence</a></li>
+			<li><a href="#113-timestamps">11.3 Timestamps</a></li>
+			<li><a href="#114-time-locks-and-ddo-recovery">11.4 Time Locks and DDO Recovery</a></li>
+			<li><a href="#115-smart-signatures">11.5 Smart Signatures</a></li>
+			<li><a href="#116-verifiable-claims">11.6 Verifiable Claims</a></li>
+			<li><a href="#117-alternate-serializations-and-graph-models">11.7 Alternate Serializations and Graph Models</a>
+			</li>
+		</ul>
+	</li>
+	<li><a href="#12-references">12. References</a></li>
+	<li><a href="#appendix-a-the-generic-did-context-for-json-ld">Appendix A: The Generic DID Context for JSON-LD</a></li>
+	<li><a href="#appendix-b-standard-key-descriptions">Appendix B: Standard Key Descriptions</a>
+		<ul>
+			<li><a href="#rsa-keys">RSA Keys</a></li>
+			<li><a href="#eddsa-keys">EdDSA Keys</a></li>
+		</ul>
+	</li>
+</ul>
 </details>
-<br>
+<hr>
 <h1 class="mume-header" id="1-introduction">1. Introduction</h1>
 
 <h2 class="mume-header" id="11-overview">1.1 Overview</h2>
@@ -688,7 +609,7 @@ html body iframe .tabs.bartabs {
 <p>This design eliminates dependence on centralized registries for identifiers as well as centralized certificate authorities for key management&#x2014;the standard pattern in hierarchical <a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI (public key infrastructure</a>). Because DID records are on a distributed ledger, each identity owner may serve as its own root authority&#x2014;an architecture referred to as <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI (decentralized PKI)</a>.</p>
 <p>Note that DID methods may also be developed for identities registered in federated identity management systems. For their part, federated identity systems may add support for DIDs.</p>
 <p>This creates an interoperability bridge between the worlds of centralized, federated, and decentralized identity.</p>
-<h2 class="mume-header" id="12-uri-url-and-urn">1.2. URI, URL, and URN</h2>
+<h2 class="mume-header" id="12-web-based-resource-protocols">1.2. Web Based Resource Protocols</h2>
 
 <p>DIDs have a foundation in URIs, so it&apos;s important to understand how the W3C <a href="https://www.w3.org/TR/uri-clarification/">clarified</a> the terms <strong>URI</strong> (Uniform Resource Identifier), <strong>URL</strong> (Uniform Resource Locator), and <strong>URN</strong> (Uniform Resource Name) in September 2001. The key difference between these three categories of identifiers are:</p>
 <h2 class="mume-header" id="13-uri">1.3. URI</h2>
@@ -1638,16 +1559,61 @@ idchar             <span class="token operator">=</span> ALPHA / DIGIT / <span c
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
-</pre>
+</pre><h1 class="mume-header" id="those-who-made-this-happen">Those Who Made This Happen &#x1F603;</h1>
+
+<p><strong>EDITORS</strong>:</p>
+<ul>
+<li>Flavio Espinoza</li>
+<li>Drummond Reed</li>
+<li>Les Chasen</li>
+<li>Christopher Allen</li>
+<li>Ryan Grant</li>
+</ul>
+<hr>
+<p><strong>CONTRIBUTORS:</strong></p>
+<ul>
+<li>Flavio Espinoza</li>
+<li>Manu Sporny</li>
+<li>David Longley</li>
+<li>Jason Law</li>
+<li>Daniel Hardman</li>
+<li>Markus Sabadello</li>
+<li>Christian Lundkvist</li>
+<li>Jonathan Endersby</li>
+</ul>
+<hr>
+<p><strong>ACKNOWLEDGMENTS</strong>:</p>
+<p>Work on this specification has been funded in part by the United States Department of Homeland Security&apos;s Science and Technology Directorate under contract <code>HSHQDC-16-R00012-H-SB2016-1-002</code>.</p>
+<p>The content of this specification does not necessarily reflect the position or the policy of the U.S. Government and no official endorsement should be inferred.</p>
+<hr>
+<p><strong>SPECIAL THANKS</strong>:<br>
+<a href="http://www.weboftrust.info/">Rebooting the Web of Trust Group</a></p>
+<ul>
+<li>Christopher Allen</li>
+<li>Brian Weller</li>
+<li>Kiara Robles</li>
+<li>Shannon Appelcline</li>
+</ul>
+<hr>
+<p><strong>TERMINOLOGY</strong>:</p>
+<ul>
+<li>Terms in <strong>bold</strong> are defined in the <strong>Terminology</strong> section.</li>
+</ul>
+<p>Thank you! &#x1F603;</p>
+
       </div>
       <div class="md-sidebar-toc"><ul>
 <li><a href="#did-decentralized-identifier-data-model-and-generic-syntax-10-implementors-draft-01">DID (Decentralized Identifier) Data Model and Generic Syntax 1.0 implementor&apos;s Draft 01</a></li>
-<li><a href="#abstract">Abstract</a></li>
+<li><a href="#abstract">Abstract</a>
+<ul>
+<li><a href="#decentralized-identifiers-did">Decentralized Identifiers (DID)</a></li>
+</ul>
+</li>
 <li><a href="#table-of-contents">Table of Contents</a></li>
 <li><a href="#1-introduction">1. Introduction</a>
 <ul>
 <li><a href="#11-overview">1.1 Overview</a></li>
-<li><a href="#12-uri-url-and-urn">1.2. URI, URL, and URN</a></li>
+<li><a href="#12-web-based-resource-protocols">1.2. Web Based Resource Protocols</a></li>
 <li><a href="#13-uri">1.3. URI</a></li>
 <li><a href="#14-url">1.4. URL</a></li>
 <li><a href="#15-urn">1.5 URN</a></li>
@@ -1749,6 +1715,7 @@ idchar             <span class="token operator">=</span> ALPHA / DIGIT / <span c
 <li><a href="#eddsa-keys">EdDSA Keys</a></li>
 </ul>
 </li>
+<li><a href="#those-who-made-this-happen">Those Who Made This Happen &#x1F603;</a></li>
 </ul>
 </div>
       <a id="sidebar-toc-btn">&#x2261;</a>

@@ -1,67 +1,19 @@
 # DID (Decentralized Identifier) Data Model and Generic Syntax 1.0 implementor's Draft 01
 
-**EDITORS**:
 
-- Flavio Espinoza 
-- Drummond Reed
-- Les Chasen
-- Christopher Allen
-- Ryan Grant
+**Document Status**:
 
----
-
-**CONTRIBUTORS:**
-
-- Flavio Espinoza
-- Manu Sporny
-- David Longley
-- Jason Law
-- Daniel Hardman
-- Markus Sabadello
-- Christian Lundkvist
-- Jonathan Endersby
-
----
-
-**DOCUMENT**:
-
-- Flavio Espinoza's
-- Draft
-- v1.0 
-- 6 July 2019
-
----
-
-**ACKNOWLEDGMENTS**:
-
-Work on this specification has been funded in part by the United States Department of Homeland Security's Science and Technology Directorate under contract `HSHQDC-16-R00012-H-SB2016-1-002`.
- 
-The content of this specification does not necessarily reflect the position or the policy of the U.S. Government and no official endorsement should be inferred.
-
----
-
-**SPECIAL THANKS**:
-[Rebooting the Web of Trust Group](http://www.weboftrust.info/)
-
-- Christopher Allen
-
-- Brian Weller
-
-- Kiara Robles
-
-- Shannon Appelcline
-
----
-
-**TERMINOLOGY**:
-
-- Terms in **bold** are defined in the **Terminology** section.
+- **Flavio Espinoza's** 
+	draft 
+	v1.0 
+	6 July 2019
 
 ---
 
 # Abstract
 
-**DIDs** (decentralized identifiers) are a new type of identifier intended for verifiable digital identity that is "self-sovereign", i.e., fully under the control of the **identity owner** and not dependent on a centralized registry, identity provider, or certificate authority. 
+### Decentralized Identifiers (DID)
+**DIDs** are a new type of identifier intended for verifiable digital identity that is "self-sovereign", i.e., fully under the control of the **identity owner** and not dependent on a centralized registry, identity provider, or certificate authority. 
 
 DIDs resolve to **DDOs** (DID descriptor objects)—simple JSON documents that contain all the metadata needed to prove ownership and control of a DID. 
 
@@ -230,7 +182,7 @@ Note that DID methods may also be developed for identities registered in federat
 
 This creates an interoperability bridge between the worlds of centralized, federated, and decentralized identity.
 
-## 1.2. URI, URL, and URN
+## 1.2. Web Based Resource Protocols
 
 DIDs have a foundation in URIs, so it's important to understand how the W3C [clarified](https://www.w3.org/TR/uri-clarification/) the terms **URI** (Uniform Resource Identifier), **URL** (Uniform Resource Locator), and **URN** (Uniform Resource Name) in September 2001. The key difference between these three categories of identifiers are:
 
@@ -1283,4 +1235,53 @@ As described in section 6, key description is a standard way to describe a publi
 	]
 }
 ```
+
+# Those Who Made This Happen :)
+
+**EDITORS**:
+
+- Flavio Espinoza 
+- Drummond Reed
+- Les Chasen
+- Christopher Allen
+- Ryan Grant
+
+---
+
+**CONTRIBUTORS:**
+
+- Flavio Espinoza
+- Manu Sporny
+- David Longley
+- Jason Law
+- Daniel Hardman
+- Markus Sabadello
+- Christian Lundkvist
+- Jonathan Endersby
+
+---
+
+**ACKNOWLEDGMENTS**:
+
+Work on this specification has been funded in part by the United States Department of Homeland Security's Science and Technology Directorate under contract `HSHQDC-16-R00012-H-SB2016-1-002`.
+ 
+The content of this specification does not necessarily reflect the position or the policy of the U.S. Government and no official endorsement should be inferred.
+
+---
+
+**SPECIAL THANKS**:
+[Rebooting the Web of Trust Group](http://www.weboftrust.info/)
+
+- Christopher Allen
+- Brian Weller
+- Kiara Robles
+- Shannon Appelcline
+
+---
+
+**TERMINOLOGY**:
+
+- Terms in **bold** are defined in the **Terminology** section.
+
+Thank you! :)
 
