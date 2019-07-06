@@ -83,15 +83,13 @@ Specifically, a DDO contains a set of **key descriptions**, which are machine-re
 
 Each DID uses a specific **DID method**, defined in a separate **DID method specification**, to define how the DID is registered, resolved, updated, and revoked on a specific distributed ledger or network.
 
-**Table of Contents**
+---
 
-[TOC]
-
+# Table of Contents
 
 <details>
 
 <summary>expand for example</summary>
-
 
 <ul>
 	<li><a href="#did-decentralized-identifier-data-model-and-generic-syntax-10-implementors-draft-01">DID
@@ -214,7 +212,6 @@ Each DID uses a specific **DID method**, defined in a separate **DID method spec
 	</li>
 </ul>
 
-
 </details>
 
 <br />
@@ -271,13 +268,53 @@ Conceptually, the relationship of this specification and a DID method specificat
 
 For a list of DID method specifications, see Appendix A.
 
-# 2. Example DIDs and DDOs
+# 2. DIDs and DDOs
+Current and proposed DID and DDO models and methods
 
-This example of a DID uses the Sovrin DID method listed in Appendix A:
+## 2.1. Proposed DID Method Specifications
 
-	did:sov:21tDAKCERh95uGgKbJNHYp
+This table summarizes the DID method specifications currently in development. The links will be updated as subsequent Implementer’s Drafts are produced.
 
-## 2.1. Example Owner-Managed DDO
+<table>
+  <tr>
+    <td>Method Name</td>
+    <td>DLT or Network</td>
+    <td>Authors</td>
+    <td>Link</td>
+  </tr>
+  <tr>
+    <td>did:sov:</td>
+    <td> Sovrin</td>
+    <td>Sovrin Foundation</td>
+    <td>https://docs.google.com/document/d/1X7dWpVvskGRpk05yyPEMd1uqaJ9FnOzoeWMdwzdIFyU/edit# </td>
+  </tr>
+  <tr>
+    <td>did:btc1:</td>
+    <td>Bitcoin</td>
+    <td> Christopher Allen</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>did:uport</td>
+    <td> Ethereum</td>
+    <td>uPort</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>did:cnsnt:</td>
+    <td>Ethereum</td>
+    <td>Consent</td>
+    <td></td>
+  </tr>
+</table>
+
+## 2.2. Example Sovereign DID
+An example of a DID using the Sovereign DID Method
+```bash
+did:sov:21tDAKCERh95uGgKbJNHYp
+```
+
+## 2.3. Example Owner-Managed DDO
 
 Following is an example of a DDO that describes the DID above. This example assumes that the **identity owner**—the entity that controls the private keys for this identity—is authoritative for the DDO. See section 2.2 for an example of a DDO created by a **guardian**. For the authoritative JSON-LD context definition, see Appendix B (the URL for the @context property below is just for illustration). 
 
@@ -332,7 +369,7 @@ Following is an example of a DDO that describes the DID above. This example assu
 }
 ```
 
-## 2.2. Example Guardian-Managed DDO
+## 2.4. Example Guardian-Managed DDO
 
 Following is a second example of a DDO that describes the DID above. In this case the DDO describes a **dependent**—an entity who is not currently in a position to control the private keys for this identity. This DDO was created by a **guardian**—a separate identity owner with its own DID that serves as a trustee for the dependent. Note that while this DDO asserts a set of service endpoints, it does not yet contain a set of key descriptions because the dependent does not yet have its own set of private keys.
 
@@ -1137,45 +1174,8 @@ This version of the specification relies on JSON-LD and the RDF graph model for 
 
 [XML-DATETIME] W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes. W3C Recommendation. [https://www.w3.org/TR/xmlschema11-2/](https://www.w3.org/TR/xmlschema11-2/) 
 
-# Appendix A: Proposed DID Method Specifications
 
-This table summarizes the DID method specifications currently in development. The links will be updated as subsequent Implementer’s Drafts are produced.
-
-<table>
-  <tr>
-    <td>Method Name</td>
-    <td>DLT or Network</td>
-    <td>Authors</td>
-    <td>Link</td>
-  </tr>
-  <tr>
-    <td>did:sov:</td>
-    <td> Sovrin</td>
-    <td>Sovrin Foundation</td>
-    <td>https://docs.google.com/document/d/1X7dWpVvskGRpk05yyPEMd1uqaJ9FnOzoeWMdwzdIFyU/edit# </td>
-  </tr>
-  <tr>
-    <td>did:btc1:</td>
-    <td>Bitcoin</td>
-    <td> Christopher Allen</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>did:uport</td>
-    <td> Ethereum</td>
-    <td>uPort</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>did:cnsnt:</td>
-    <td>Ethereum</td>
-    <td>Consent</td>
-    <td></td>
-  </tr>
-</table>
-
-
-# Appendix B: The Generic DID Context for JSON-LD
+# Appendix A: The Generic DID Context for JSON-LD
 
 This JSON-LD document is the generic context for all DDOs. See section 6.1 for the rules for using this context.
 
@@ -1221,7 +1221,7 @@ For this implementer's draft, the URL for this context is:
 ```
 
 
-# Appendix C: Standard Key Descriptions
+# Appendix B: Standard Key Descriptions
 
 As described in section 6, key description is a standard way to describe a public key or verification key in JSON-LD. This appendix contains a list of key descriptions recommended for use in DDOs.
 

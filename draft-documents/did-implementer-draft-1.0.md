@@ -73,7 +73,7 @@ The content of this specification does not necessarily reflect the position or t
 
 ---
 
-## Abstract
+# Abstract
 
 **DIDs** (decentralized identifiers) are a new type of identifier intended for verifiable digital identity that is "self-sovereign", i.e., fully under the control of the **identity owner** and not dependent on a centralized registry, identity provider, or certificate authority. 
 
@@ -83,23 +83,22 @@ Specifically, a DDO contains a set of **key descriptions**, which are machine-re
 
 Each DID uses a specific **DID method**, defined in a separate **DID method specification**, to define how the DID is registered, resolved, updated, and revoked on a specific distributed ledger or network.
 
-**Table of Contents**
+---
 
-[TOC]
-
+# Table of Contents
 
 <details>
 
-<summary>expand for example</summary>
+<summary>expand for table of contents</summary>
+
+<br/>
 
 
 <ul>
 	<li><a href="#did-decentralized-identifier-data-model-and-generic-syntax-10-implementors-draft-01">DID
-			(Decentralized Identifier) Data Model and Generic Syntax 1.0 implementor&apos;s Draft 01</a>
-		<ul>
-			<li><a href="#abstract">Abstract</a></li>
-		</ul>
-	</li>
+			(Decentralized Identifier) Data Model and Generic Syntax 1.0 implementor&apos;s Draft 01</a></li>
+	<li><a href="#abstract">Abstract</a></li>
+	<li><a href="#table-of-contents">Table of Contents</a></li>
 	<li><a href="#1-introduction">1. Introduction</a>
 		<ul>
 			<li><a href="#11-overview">1.1 Overview</a></li>
@@ -109,10 +108,12 @@ Each DID uses a specific **DID method**, defined in a separate **DID method spec
 			<li><a href="#15-purpose-of-this-specification">1.5. Purpose of This Specification</a></li>
 		</ul>
 	</li>
-	<li><a href="#2-example-dids-and-ddos">2. Example DIDs and DDOs</a>
+	<li><a href="#2-dids-and-ddos">2. DIDs and DDOs</a>
 		<ul>
-			<li><a href="#21-example-owner-managed-ddo">2.1. Example Owner-Managed DDO</a></li>
-			<li><a href="#22-example-guardian-managed-ddo">2.2. Example Guardian-Managed DDO</a></li>
+			<li><a href="#21-proposed-did-method-specifications">2.1. Proposed DID Method Specifications</a></li>
+			<li><a href="#22-example-sovereign-did">2.2. Example Sovereign DID</a></li>
+			<li><a href="#23-example-owner-managed-ddo">2.3. Example Owner-Managed DDO</a></li>
+			<li><a href="#24-example-guardian-managed-ddo">2.4. Example Guardian-Managed DDO</a></li>
 		</ul>
 	</li>
 	<li><a href="#3-terminology-and-acronyms">3. Terminology and Acronyms</a></li>
@@ -202,11 +203,9 @@ Each DID uses a specific **DID method**, defined in a separate **DID method spec
 		</ul>
 	</li>
 	<li><a href="#12-references">12. References</a></li>
-	<li><a href="#appendix-a-proposed-did-method-specifications">Appendix A: Proposed DID Method Specifications</a>
+	<li><a href="#appendix-a-the-generic-did-context-for-json-ld">Appendix A: The Generic DID Context for JSON-LD</a>
 	</li>
-	<li><a href="#appendix-b-the-generic-did-context-for-json-ld">Appendix B: The Generic DID Context for JSON-LD</a>
-	</li>
-	<li><a href="#appendix-c-standard-key-descriptions">Appendix C: Standard Key Descriptions</a>
+	<li><a href="#appendix-b-standard-key-descriptions">Appendix B: Standard Key Descriptions</a>
 		<ul>
 			<li><a href="#rsa-keys">RSA Keys</a></li>
 			<li><a href="#eddsa-keys">EdDSA Keys</a></li>
@@ -227,25 +226,34 @@ Conventional [identity management](https://en.wikipedia.org/wiki/Identity_manage
 
 The emergence of **distributed ledger technology** (DLT), sometimes referred to as **blockchain** technology, provides the opportunity to implement fully **decentralized identity management**. In this ecosystem, all participants with identities (called **identity owners**) share a common root of trust in the form of a globally distributed ledger (or a decentralized P2P network that provides similar capabilities).
 
-Each identity owner can be identified on a ledger with a [key-value pair](https://en.wikipedia.org/wiki/Attribute%E2%80%93value_pair). The index key is a **DID** (**decentralized identifier**) and the value is its associated **DDO** (**DID description object**). Together these form a **DID record**. Each DID record is cryptographically secured by private keys under the control of an identity owner (in the case of an owner-managed identity) or a **guardian** (in the case of a guardian-managed identity). A corresponding public key is published in the DDO using a **key description**. A DDO may also contain a set of **service endpoints** for interacting with the identity owner. Following the dictums of [Privacy by Design](https://en.wikipedia.org/wiki/Privacy_by_design), each identity owner may have as many DID records as necessary, to respect the identity owner’s desired separation of identities, personas, and contexts.
+Each identity owner can be identified on a ledger with a [key-value pair](https://en.wikipedia.org/wiki/Attribute%E2%80%93value_pair). The index key is a **DID** (**decentralized identifier**) and the value is its associated **DDO** (**DID description object**). Together these form a **DID record**. Each DID record is cryptographically secured by private keys under the control of an identity owner (in the case of an owner-managed identity) or a **guardian** (in the case of a guardian-managed identity). 
+
+A corresponding public key is published in the DDO using a **key description**. A DDO may also contain a set of **service endpoints** for interacting with the identity owner. 
+
+Following the dictums of [Privacy by Design](https://en.wikipedia.org/wiki/Privacy_by_design), each identity owner may have as many DID records as necessary, to respect the identity owner’s desired separation of identities, personas, and contexts.
 
 To use a DID with a particular distributed ledger or network requires defining a **DID method** in a separate **DID method specification**. A DID method specifies the set of rules for how a DID is registered, resolved, updated, and revoked on that specific ledger or network.
 
 This design eliminates dependence on centralized registries for identifiers as well as centralized certificate authorities for key management—the standard pattern in hierarchical [PKI (public key infrastructure](https://en.wikipedia.org/wiki/Public_key_infrastructure)). Because DID records are on a distributed ledger, each identity owner may serve as its own root authority—an architecture referred to as [DPKI (decentralized PKI)](https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf).
 
-Note that DID methods may also be developed for identities registered in federated identity management systems. For their part, federated identity systems may add support for DIDs. This creates an interoperability bridge between the worlds of centralized, federated, and decentralized identity.
+Note that DID methods may also be developed for identities registered in federated identity management systems. For their part, federated identity systems may add support for DIDs. 
 
-## 1.2. URIs, URLs, and URNs
+This creates an interoperability bridge between the worlds of centralized, federated, and decentralized identity.
+
+## 1.2. URI, URL, and URN
 
 DIDs have a foundation in URIs, so it's important to understand how the W3C [clarified](https://www.w3.org/TR/uri-clarification/) the terms **URI** (Uniform Resource Identifier), **URL** (Uniform Resource Locator), and **URN** (Uniform Resource Name) in September 2001. The key difference between these three categories of identifiers are:
 
-1. **URI** is the term for any type of identifier used to identify a resource on the Web.
+## 1.3. URI
+The term for any type of identifier used to identify a resource on the Web.
 
-2. **URL** is the term for any type of URI that can be resolved or de-referenced to locate a representation of a resource on the Web (e.g., Web page, file, image, etc.)
+## 1.4. URL
+The term for any type of URI that can be resolved or de-referenced to locate a representation of a resource on the Web (e.g., Web page, file, image, etc.)
 
-3. **URN** is the term for a specific type of URI intended to persistently identify a resource, i.e., an identifier that will never change no matter how often the resource moves, changes names, changes owners, etc. URNs are intended to last forever.
+## 1.5 URN
+The term for a specific type of URI intended to persistently identify a resource, i.e., an identifier that will never change no matter how often the resource moves, changes names, changes owners, etc. URNs are intended to last forever.
 
-## 1.3. Motivations for DIDs
+## 1.6. Motivations for DIDs
 
 The growing need for decentralized identity has produced three specific requirements for a new type of URI that still fits within URI/URL/URN architecture but in a less than traditional way: 
 
@@ -255,7 +263,7 @@ The growing need for decentralized identity has produced three specific requirem
 
 3. **A URI whose ownership and associated metadata, including public keys, can be cryptographically verified.** Control of DIDs and DDOs leverages the same public/private key cryptography as distributed ledgers.
 
-## 1.4 The Role of Human-Friendly Identifiers
+## 1.7 The Role of Human-Friendly Identifiers
 
 DIDs achieve global uniqueness without the need for a central registration authority. This comes, however, at the cost of human memorability. The algorithms capable of generating globally unique identifiers automatically produce random strings of characters that have no human meaning. This demonstrates the axiom about identifiers known as [Zooko’s Triangle](https://en.wikipedia.org/wiki/Zooko%27s_triangle): "human-meaningful, decentralized, secure—pick any two".
 
@@ -263,21 +271,63 @@ There are of course many use cases where it is desirable to discover a DID when 
 
 Solutions to this problem (and there are many) should be defined in separate specifications that reference this specification. It is strongly recommended that such specifications carefully consider: (a) the numerous security attacks based on deceiving users about the true human-friendly identifier for a target entity, and (b) the privacy consequences of using human-friendly identifiers that are inherently correlatable, especially if they are globally unique.
 
-## 1.5. Purpose of This Specification
+## 1.8. Purpose of This Specification
 
 The first purpose of this specification is to define the generic DID scheme and a generic set of operations on DID records that can be implemented for any distributed ledger or network capable of accepting DID records. The second purpose of this specification to define the conformance requirements for a **DID method specification**—a separate specification that defines a specific DID scheme and specific set of DID record operations for a specific distributed ledger or network.
 
 Conceptually, the relationship of this specification and a DID method specification is similar to the relationship of the IETF generic URI specification ([RFC 3986](https://www.ietf.org/rfc/rfc3986.txt)) and a specific [URI scheme](http://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml) (such as the http: and https: schemes specified in [RFC 7230](http://www.iana.org/go/rfc7230)). It is also similar to the relationship of the IETF generic URN specification ([RFC 2141](https://www.ietf.org/rfc/rfc2141.txt)) and a specific URN namespace definition (such as the UUID URN namespace defined in [RFC 4122](https://tools.ietf.org/html/rfc4122)). The difference is that a DID method specification, in addition to defining a specific DID scheme, must also specify the methods for reading, writing, and revoking DID records on the network for which it is written.
 
-For a list of DID method specifications, see Appendix A.
+For a list of DID method specifications, see: [Section 2.1](#)
 
-# 2. Example DIDs and DDOs
+--
 
-This example of a DID uses the Sovrin DID method listed in Appendix A:
+# 2. DIDs and DDOs
+Current and proposed DID and DDO models and methods
 
-	did:sov:21tDAKCERh95uGgKbJNHYp
+## 2.1. Proposed DID Method Specifications
 
-## 2.1. Example Owner-Managed DDO
+This table summarizes the DID method specifications currently in development. The links will be updated as subsequent Implementer’s Drafts are produced.
+
+<table>
+  <tr>
+    <td>Method Name</td>
+    <td>DLT or Network</td>
+    <td>Authors</td>
+    <td>Link</td>
+  </tr>
+  <tr>
+    <td>did:sov:</td>
+    <td> Sovrin</td>
+    <td>Sovrin Foundation</td>
+    <td>https://docs.google.com/document/d/1X7dWpVvskGRpk05yyPEMd1uqaJ9FnOzoeWMdwzdIFyU/edit# </td>
+  </tr>
+  <tr>
+    <td>did:btc1:</td>
+    <td>Bitcoin</td>
+    <td> Christopher Allen</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>did:uport</td>
+    <td> Ethereum</td>
+    <td>uPort</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>did:cnsnt:</td>
+    <td>Ethereum</td>
+    <td>Consent</td>
+    <td></td>
+  </tr>
+</table>
+
+## 2.2. Example Sovereign DID
+An example of a DID using the Sovereign DID Method
+```bash
+did:sov:21tDAKCERh95uGgKbJNHYp
+```
+
+## 2.3. Example Owner-Managed DDO
 
 Following is an example of a DDO that describes the DID above. This example assumes that the **identity owner**—the entity that controls the private keys for this identity—is authoritative for the DDO. See section 2.2 for an example of a DDO created by a **guardian**. For the authoritative JSON-LD context definition, see Appendix B (the URL for the @context property below is just for illustration). 
 
@@ -332,7 +382,7 @@ Following is an example of a DDO that describes the DID above. This example assu
 }
 ```
 
-## 2.2. Example Guardian-Managed DDO
+## 2.4. Example Guardian-Managed DDO
 
 Following is a second example of a DDO that describes the DID above. In this case the DDO describes a **dependent**—an entity who is not currently in a position to control the private keys for this identity. This DDO was created by a **guardian**—a separate identity owner with its own DID that serves as a trustee for the dependent. Note that while this DDO asserts a set of service endpoints, it does not yet contain a set of key descriptions because the dependent does not yet have its own set of private keys.
 
@@ -1137,45 +1187,8 @@ This version of the specification relies on JSON-LD and the RDF graph model for 
 
 [XML-DATETIME] W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes. W3C Recommendation. [https://www.w3.org/TR/xmlschema11-2/](https://www.w3.org/TR/xmlschema11-2/) 
 
-# Appendix A: Proposed DID Method Specifications
 
-This table summarizes the DID method specifications currently in development. The links will be updated as subsequent Implementer’s Drafts are produced.
-
-<table>
-  <tr>
-    <td>Method Name</td>
-    <td>DLT or Network</td>
-    <td>Authors</td>
-    <td>Link</td>
-  </tr>
-  <tr>
-    <td>did:sov:</td>
-    <td> Sovrin</td>
-    <td>Sovrin Foundation</td>
-    <td>https://docs.google.com/document/d/1X7dWpVvskGRpk05yyPEMd1uqaJ9FnOzoeWMdwzdIFyU/edit# </td>
-  </tr>
-  <tr>
-    <td>did:btc1:</td>
-    <td>Bitcoin</td>
-    <td> Christopher Allen</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>did:uport</td>
-    <td> Ethereum</td>
-    <td>uPort</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>did:cnsnt:</td>
-    <td>Ethereum</td>
-    <td>Consent</td>
-    <td></td>
-  </tr>
-</table>
-
-
-# Appendix B: The Generic DID Context for JSON-LD
+# Appendix A: The Generic DID Context for JSON-LD
 
 This JSON-LD document is the generic context for all DDOs. See section 6.1 for the rules for using this context.
 
@@ -1221,7 +1234,7 @@ For this implementer's draft, the URL for this context is:
 ```
 
 
-# Appendix C: Standard Key Descriptions
+# Appendix B: Standard Key Descriptions
 
 As described in section 6, key description is a standard way to describe a public key or verification key in JSON-LD. This appendix contains a list of key descriptions recommended for use in DDOs.
 
