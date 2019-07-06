@@ -87,6 +87,138 @@ Each DID uses a specific **DID method**, defined in a separate **DID method spec
 
 [TOC]
 
+
+<details>
+
+<summary>expand for example</summary>
+
+
+<ul>
+	<li><a href="#did-decentralized-identifier-data-model-and-generic-syntax-10-implementors-draft-01">DID
+			(Decentralized Identifier) Data Model and Generic Syntax 1.0 implementor&apos;s Draft 01</a>
+		<ul>
+			<li><a href="#abstract">Abstract</a></li>
+		</ul>
+	</li>
+	<li><a href="#1-introduction">1. Introduction</a>
+		<ul>
+			<li><a href="#11-overview">1.1 Overview</a></li>
+			<li><a href="#12-uris-urls-and-urns">1.2. URIs, URLs, and URNs</a></li>
+			<li><a href="#13-motivations-for-dids">1.3. Motivations for DIDs</a></li>
+			<li><a href="#14-the-role-of-human-friendly-identifiers">1.4 The Role of Human-Friendly Identifiers</a></li>
+			<li><a href="#15-purpose-of-this-specification">1.5. Purpose of This Specification</a></li>
+		</ul>
+	</li>
+	<li><a href="#2-example-dids-and-ddos">2. Example DIDs and DDOs</a>
+		<ul>
+			<li><a href="#21-example-owner-managed-ddo">2.1. Example Owner-Managed DDO</a></li>
+			<li><a href="#22-example-guardian-managed-ddo">2.2. Example Guardian-Managed DDO</a></li>
+		</ul>
+	</li>
+	<li><a href="#3-terminology-and-acronyms">3. Terminology and Acronyms</a></li>
+	<li><a href="#4-design-goals-principles">4. Design Goals &amp; Principles</a></li>
+	<li><a href="#5-dids-decentralized-identifiers">5. DIDs (Decentralized Identifiers)</a>
+		<ul>
+			<li><a href="#51-the-generic-did-scheme">5.1. The Generic DID Scheme</a></li>
+			<li><a href="#52-specific-did-method-schemes">5.2. Specific DID Method Schemes</a></li>
+			<li><a href="#53-did-paths">5.3 DID Paths</a></li>
+			<li><a href="#54-did-fragments">5.4 DID Fragments</a></li>
+			<li><a href="#55-did-normalization">5.5 DID Normalization</a></li>
+			<li><a href="#56-did-persistence">5.6 DID Persistence</a></li>
+		</ul>
+	</li>
+	<li><a href="#6-ddos-did-descriptor-objects">6. DDOs (DID Descriptor Objects)</a>
+		<ul>
+			<li><a href="#61-context-required">6.1. Context (Required)</a></li>
+			<li><a href="#62-primary-did-required">6.2. Primary DID (Required)</a></li>
+			<li><a href="#63-guardian-required-if-no-proof-of-ownership">6.3. Guardian (Required If No Proof of
+					Ownership)</a></li>
+			<li><a href="#64-proof-of-ownership-required-if-no-guardian">6.4. Proof of Ownership (Required If No
+					Guardian)</a></li>
+			<li><a href="#65-proof-of-control-optional-and-method-specific">6.5. Proof of Control (Optional and
+					Method-Specific)</a>
+				<ul>
+					<li><a href="#651-or-control">6.5.1 &quot;Or&quot; Control</a></li>
+					<li><a href="#652-and-control">6.5.2 &quot;And&quot; Control</a></li>
+					<li><a href="#653-m-of-n-control">6.5.3 &quot;M-of-N&quot; Control</a></li>
+				</ul>
+			</li>
+			<li><a href="#66-service-endpoint-references-optional">6.6. Service Endpoint References (Optional)</a></li>
+			<li><a href="#67-created-optional">6.7. Created (Optional)</a></li>
+			<li><a href="#68-updated-optional">6.8. Updated (Optional)</a></li>
+			<li><a href="#69-signature-optional">6.9. Signature (Optional)</a></li>
+		</ul>
+	</li>
+	<li><a href="#7-did-operations">7. DID Operations</a>
+		<ul>
+			<li><a href="#71-create">7.1. Create</a></li>
+			<li><a href="#72-readverify">7.2. Read/Verify</a></li>
+			<li><a href="#73-update">7.3. Update</a></li>
+			<li><a href="#74-deleterevoke">7.4. Delete/Revoke</a></li>
+		</ul>
+	</li>
+	<li><a href="#8-did-resolvers">8. DID Resolvers</a></li>
+	<li><a href="#9-security-considerations">9. Security Considerations</a>
+		<ul>
+			<li><a href="#91-requirements-of-did-method-specifications">9.1. Requirements of DID Method Specifications</a>
+			</li>
+			<li><a href="#92-binding-of-identity">9.2 Binding of Identity</a>
+				<ul>
+					<li><a href="#921-proving-ownership-of-a-did-and-ddo">9.2.1 Proving Ownership of a DID and DDO</a></li>
+					<li><a href="#922-proving-ownership-of-a-public-key">9.2.2 Proving Ownership of a Public Key</a></li>
+					<li><a href="#923-identity-owner-authentication-and-verifiable-claims">9.2.3 Identity Owner Authentication
+							and Verifiable Claims</a></li>
+				</ul>
+			</li>
+			<li><a href="#93-authentication-service-endpoints">9.3 Authentication Service Endpoints</a></li>
+			<li><a href="#94-non-repudiation">9.4 Non-Repudiation</a></li>
+			<li><a href="#95-notification-of-ddo-changes">9.5 Notification of DDO Changes</a></li>
+			<li><a href="#96-key-and-signature-expiration">9.6 Key and Signature Expiration</a></li>
+			<li><a href="#97-key-revocation-and-recovery">9.7 Key Revocation and Recovery</a></li>
+		</ul>
+	</li>
+	<li><a href="#10-privacy-considerations">10. Privacy Considerations</a>
+		<ul>
+			<li><a href="#101-requirements-of-did-method-specifications">10.1 Requirements of DID Method
+					Specifications</a></li>
+			<li><a href="#102-keep-personally-identifiable-information-pii-off-ledger">10.2 Keep Personally-Identifiable
+					Information (PII) Off-Ledger</a></li>
+			<li><a href="#103-did-correlation-risks-and-pseudonymous-dids">10.3 DID Correlation Risks and Pseudonymous
+					DIDs</a></li>
+			<li><a href="#104-ddo-correlation-risks">10.4 DDO Correlation Risks</a></li>
+			<li><a href="#105-herd-privacy">10.5 Herd Privacy</a></li>
+		</ul>
+	</li>
+	<li><a href="#11-future-work">11. Future Work</a>
+		<ul>
+			<li><a href="#111-upper-limits-on-did-character-length">11.1 Upper Limits on DID Character Length</a></li>
+			<li><a href="#112-equivalence">11.2 Equivalence</a></li>
+			<li><a href="#113-timestamps">11.3 Timestamps</a></li>
+			<li><a href="#114-time-locks-and-ddo-recovery">11.4 Time Locks and DDO Recovery</a></li>
+			<li><a href="#115-smart-signatures">11.5 Smart Signatures</a></li>
+			<li><a href="#116-verifiable-claims">11.6 Verifiable Claims</a></li>
+			<li><a href="#117-alternate-serializations-and-graph-models">11.7 Alternate Serializations and Graph
+					Models</a></li>
+		</ul>
+	</li>
+	<li><a href="#12-references">12. References</a></li>
+	<li><a href="#appendix-a-proposed-did-method-specifications">Appendix A: Proposed DID Method Specifications</a>
+	</li>
+	<li><a href="#appendix-b-the-generic-did-context-for-json-ld">Appendix B: The Generic DID Context for JSON-LD</a>
+	</li>
+	<li><a href="#appendix-c-standard-key-descriptions">Appendix C: Standard Key Descriptions</a>
+		<ul>
+			<li><a href="#rsa-keys">RSA Keys</a></li>
+			<li><a href="#eddsa-keys">EdDSA Keys</a></li>
+		</ul>
+	</li>
+</ul>
+
+
+</details>
+
+<br />
+
 # 1. Introduction
 
 ## 1.1 Overview
