@@ -3,13 +3,9 @@
 **EDITORS**:
 
 - Flavio Espinoza 
-
 - Drummond Reed
-
 - Les Chasen
- 
 - Christopher Allen
-
 - Ryan Grant
 
 ---
@@ -17,31 +13,21 @@
 **CONTRIBUTORS:**
 
 - Flavio Espinoza
-
 - Manu Sporny
-
 - David Longley
-
 - Jason Law
-
 - Daniel Hardman
-
 - Markus Sabadello
-
 - Christian Lundkvist
-
 - Jonathan Endersby
 
 ---
 
-**STATUS**:
+**DOCUMENT**:
 
 - Flavio Espinoza's
-
 - Draft
-
 - v1.0 
-
 - 6 July 2019
 
 ---
